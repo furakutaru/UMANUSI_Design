@@ -67,30 +67,30 @@ const tabsData = [
 
 export const ServiceSection = () => {
   const [activeTab, setActiveTab] = useState('goods');
-
   const currentTabData = tabsData.find(tab => tab.id === activeTab) || tabsData[0];
 
   return (
-    <section className="relative flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto overflow-hidden py-12">
-      <header className="text-center">
-        <h2 className="text-4xl font-bold leading-none text-black">
+    <section className="w-full max-w-[1200px] mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <header className="text-center w-full">
+        <h1 className="text-3xl md:text-4xl font-bold leading-none text-black mb-0">
           サービス内容
-        </h2>
-        <p className="mt-9 text-2xl font-semibold leading-none text-gray-900 max-md:max-w-full">
+        </h1>
+        <h2 className="text-xl md:text-2xl font-semibold leading-none text-gray-900 mt-4 mb-6">
           競馬に関わる様々なデザインニーズにお応えします
-        </p>
+        </h2>
       </header>
 
-      <div className="flex overflow-hidden flex-col mt-9 max-w-full w-[992px]">
-        <nav className="flex overflow-hidden gap-4 items-center self-center max-w-full text-lg font-semibold leading-loose text-center whitespace-nowrap w-[813px]">
+      <div className="flex flex-col mt-9 w-full max-w-[992px] mx-auto">
+        <nav className="flex flex-wrap justify-center gap-4 self-center w-full text-lg font-semibold leading-loose text-center">
           {tabsData.map((tab) => (
-            <TabButton
-              key={tab.id}
-              isActive={activeTab === tab.id}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </TabButton>
+            <div key={tab.id} className="basis-1/2 md:basis-auto">
+              <TabButton
+                isActive={activeTab === tab.id}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </TabButton>
+            </div>
           ))}
         </nav>
 

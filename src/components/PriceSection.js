@@ -1,5 +1,5 @@
 import React from "react";
-import { PriceCard } from "./PriceCard";
+import { FeatureCard } from "./FeatureCard";
 
 const memorialItems = [
   {
@@ -56,65 +56,56 @@ const designItems = [
   }
 ];
 
+const priceCards = [
+  { title: "記念品・メモリアルグッズ", items: memorialItems },
+  { title: "応援グッズ・アパレル", items: apparelItems },
+  { title: "ロゴ・デザイン", items: designItems }
+];
+
 export function PriceSection() {
   return (
-    <section
-      className="box-border relative px-5 py-12 mx-auto my-0 w-full max-w-[1204px] max-sm:px-4 max-sm:py-0"
-    >
-      <h1
-        className="mb-5 text-4xl font-bold leading-10 text-center text-black max-md:text-3xl max-md:leading-10 max-sm:text-3xl max-sm:leading-9"
-      >
-        料金
-      </h1>
-      <h2
-        className="mb-12 text-2xl font-semibold leading-8 text-center text-gray-900 max-md:mb-8 max-md:text-xl max-md:leading-7 max-sm:mb-6 max-sm:text-lg max-sm:leading-6"
-      >
-        デザインの複雑さや数量によって価格が変動します
-      </h2>
-      <div
-        className="grid grid-cols-3 gap-6 items-stretch mb-8 w-full max-md:flex-col max-md:gap-6 max-md:items-center"
-      >
-        <PriceCard
-          title="記念品・メモリアルグッズ"
-          items={memorialItems}
-          headerRadius="0.6rem"
-          cardRadius="0.75rem"
-          cardWidth={350}
-        />
-        <PriceCard
-          title="応援グッズ・アパレル"
-          items={apparelItems}
-          headerRadius="0.6rem"
-          cardRadius="0.75rem"
-          cardWidth={350}
-        />
-        <PriceCard
-          title="ロゴ・デザイン"
-          items={designItems}
-          headerRadius="0.6rem"
-          cardRadius="0.75rem"
-          cardWidth={350}
-        />
+    <section id="price" className="w-full bg-white py-12 md:py-16">
+      <div className="max-w-[1200px] mx-auto px-4">
+        <header className="text-center mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-black">料金</h1>
+          <h2 className="mt-4 text-lg md:text-xl font-semibold text-gray-800">
+            デザインの複雑さや数量によって価格が変動します
+          </h2>
+        </header>
+        
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {priceCards.map((card) => (
+            <li key={card.title} className="flex flex-col">
+              <FeatureCard 
+                title={card.title}
+                items={card.items}
+                renderItem={(item, index, total) => (
+                  <li
+                    key={index}
+                    className={`flex justify-between items-center w-full py-3 ${
+                      index === total - 1 ? 'border-b-0' : 'border-b border-solid border-gray-300'
+                    }`}
+                  >
+                    <div className="flex-1 text-base text-gray-900">{item.serviceName}</div>
+                    <div className="font-bold text-right text-red-600">
+                      <span className="text-sm">¥</span>
+                      <span className="text-lg">{item.price}</span>
+                    </div>
+                  </li>
+                )}
+              />
+            </li>
+          ))}
+        </ul>
+
+        <aside className="mt-8 md:mt-12 p-6 mx-auto bg-gray-50 rounded-lg max-w-4xl">
+          <p className="text-sm text-center text-gray-700 space-y-2">
+            <span>※ 詳細な価格は、デザインの複雑さや数量によって変動する場合があります。お気軽にお問い合わせください。</span>
+            <br />
+            <span>※ 価格にプラスして印刷代、送料がかかります。以下以外もお気軽にご相談ください。</span>
+          </p>
+        </aside>
       </div>
-      <aside
-        className="box-border flex justify-center items-center p-6 mx-auto my-0 w-full bg-gray-50 rounded-lg max-w-[992px] max-sm:px-4 max-sm:py-5"
-      >
-        <p
-          className="text-base leading-6 text-center text-gray-700 max-sm:text-sm max-sm:leading-5"
-        >
-          <span>
-            ※
-            詳細な価格は、デザインの複雑さや数量によって変動する場合があります。お気軽にお問い合わせください。
-          </span>
-          <br />
-          <span>
-            ※
-            価格にプラスして印刷代、送料がかかります。以下以外もお気軽にご相談ください。
-          </span>
-        </p>
-      </aside>
     </section>
   );
-}
-
-export default PriceSection; 
+} 

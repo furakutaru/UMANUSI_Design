@@ -3,7 +3,8 @@ import React from "react";
 export const SliderArrow = ({
   direction,
   onClick,
-  className = ""
+  className = "",
+  variant
 }) => {
   const arrowPath = direction === "left"
     ? "M7 13L1 7L7 1"
@@ -13,13 +14,19 @@ export const SliderArrow = ({
     ? "left-0"
     : "right-0";
 
+  // デザイン分岐
+  const isScene = variant === "scene";
+  const bgClass = isScene
+    ? "bg-red-600 bg-opacity-60 border-none"
+    : "bg-white bg-opacity-20 border-white border-opacity-30 border";
+
   return (
     <button
       className={`absolute top-1/2 z-10 w-12 h-12 -translate-y-1/2 cursor-pointer max-sm:w-10 max-sm:h-10 ${positionClasses} ${className}`}
       onClick={onClick}
       aria-label={`${direction === "left" ? "Previous" : "Next"} scene card`}
     >
-      <div className="absolute top-0 left-0 w-12 h-12 rounded-full border border-solid backdrop-blur-[2px] bg-white bg-opacity-20 border-white border-opacity-30 max-sm:w-10 max-sm:h-10" />
+      <div className={`absolute top-0 left-0 w-12 h-12 rounded-full backdrop-blur-[2px] ${bgClass} max-sm:w-10 max-sm:h-10`} />
       <svg
         width="8"
         height="14"

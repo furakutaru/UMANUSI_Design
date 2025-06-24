@@ -1,6 +1,6 @@
 import React from "react";
 
-export function HeroButtons({ className = "" }) {
+export function HeroButtons() {
   const handleConsultationClick = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -22,16 +22,16 @@ export function HeroButtons({ className = "" }) {
   };
 
   return (
-    <div className={`flex flex-wrap gap-9 text-lg font-semibold leading-loose w-[572px] max-md:max-w-full ${className}`}>
+    <div className="flex flex-col md:flex-row gap-4 w-full">
       <button 
         onClick={handleConsultationClick}
-        className="flex-auto gap-2.5 self-stretch px-11 py-4 text-white bg-red-500 rounded-full min-h-[62px] max-md:px-5"
+        className="flex-1 px-6 py-4 text-base font-semibold text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors"
       >
         制作を相談・依頼する
       </button>
       <button 
         onClick={handlePortfolioClick}
-        className="flex-auto gap-2.5 self-stretch px-16 py-4 text-red-500 bg-white rounded-full border border-red-500 border-solid min-h-[62px] max-md:px-5"
+        className="flex-1 px-6 py-4 text-base font-semibold text-red-500 bg-white rounded-full border border-red-500 hover:bg-red-50 transition-colors"
       >
         制作実績を見る
       </button>

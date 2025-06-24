@@ -1,78 +1,56 @@
 import React from "react";
-import { PriceItem } from "./PriceItem";
+
+const printPriceData = [
+  { productName: "名刺20部両面カラー", amount: "1,050", additionalText: "（送料込み）" },
+  { productName: "横断幕90×110ｃｍ", amount: "5,8845", additionalText: "（送料込み）" },
+  { productName: "キャッププリント15個", amount: "35,000", additionalText: "（送料、キャップ代込み）" },
+  { productName: "トレーディングカード1種20枚", amount: "1,920", additionalText: "（送料込み）" },
+  { productName: "アクリルスタンド5個75×100mm", amount: "7,442", additionalText: "（送料込み）" },
+  { productName: "タオル5枚", amount: "7,760", additionalText: "（送料込み）" },
+];
+
+// 2件ずつの配列に分割
+const chunkArray = (arr, size) => {
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+};
 
 export const PrintPrice = () => {
+  const rows = chunkArray(printPriceData, 2);
   return (
-    <section className="overflow-hidden px-20 py-10 text-black max-md:px-5">
-      <header className="text-center">
-        <h1 className="text-4xl font-bold leading-none max-md:max-w-full">
-          印刷代参考料金
-        </h1>
-        <p className="mt-9 text-2xl font-semibold leading-none text-gray-900 max-md:max-w-full">
-          印刷物の種類や部数によって価格が変動します。下記は一例です
-        </p>
-      </header>
-
-      <div className="mt-9 w-full text-lg leading-8 max-md:max-w-full">
-        <div className="flex flex-wrap gap-10">
-          <PriceItem
-            productName="名刺20部両面カラー"
-            amount="1,050"
-            additionalText="（送料込み）"
-          />
-          <PriceItem
-            productName="横断幕90×110ｃｍ"
-            amount="5,8845"
-            additionalText="（送料込み）"
-          />
-        </div>
-
-        <div className="flex flex-wrap gap-10 max-md:max-w-full">
-          <article className="overflow-hidden flex-1 grow shrink-0 pt-6 bg-white basis-0 w-fit max-md:max-w-full">
-            <div className="flex flex-wrap gap-10 max-md:max-w-full">
-              <h3 className="grow shrink w-[146px]">
-                キャッププリント15個
-              </h3>
-              <div className="grow shrink font-semibold text-center w-[206px]">
-                <span style={{ fontWeight: 700, fontSize: '14px' }}>¥</span>
-                <span style={{ fontWeight: 700 }}>35,000</span>
-                <span style={{ fontWeight: 700, fontSize: '14px' }}>
-                  （送料、キャップ代込み）
-                </span>
-              </div>
+    <section className="w-full bg-white py-12 md:py-16">
+      <div className="max-w-[1200px] mx-auto px-4">
+        <header className="text-center mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-black">印刷代参考料金</h1>
+          <h2 className="mt-4 text-lg md:text-xl font-semibold text-gray-800">
+            印刷物の種類や部数によって価格が変動します。下記は一例です
+          </h2>
+        </header>
+        <div className="space-y-6">
+          {rows.map((row, rowIdx) => (
+            <div key={rowIdx} className="flex flex-col md:flex-row gap-6">
+              {row.map((item, idx) => (
+                <article key={idx} className="flex-1 bg-white p-0 flex flex-col justify-between min-w-0">
+                  <div className="flex flex-wrap gap-5 justify-between items-center py-3 px-0">
+                    <h3 className="text-base font-semibold text-gray-900 flex-1 min-w-0 truncate">{item.productName}</h3>
+                    <div className="font-bold text-xl text-red-600 text-right flex items-end gap-1">
+                      <span className="text-sm align-sub">¥</span>
+                      <span>{item.amount}</span>
+                      {item.additionalText && (
+                        <span className="text-xs text-gray-500 ml-1">{item.additionalText}</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="border-b border-solid border-gray-200 h-px mt-5" />
+                </article>
+              ))}
+              {/* 1件だけの行の場合、空のdivでバランス調整 */}
+              {row.length === 1 && <div className="flex-1" />}
             </div>
-            <hr className="shrink-0 mt-5 h-px border-b border-solid border-gray-200 max-md:max-w-full" />
-          </article>
-
-          <PriceItem
-            productName="トレーディングカード1種20枚"
-            amount="1,920"
-            additionalText="（送料込み）"
-          />
-        </div>
-
-        <div className="flex flex-wrap gap-10 max-md:max-w-full">
-          <article className="overflow-hidden flex-1 grow shrink-0 pt-6 bg-white basis-0 w-fit max-md:max-w-full">
-            <div className="flex flex-wrap gap-10 max-md:max-w-full">
-              <h3 className="flex-auto w-60">
-                アクリルスタンド5個75×100mm
-              </h3>
-              <div className="grow shrink font-semibold text-center w-[114px]">
-                <span style={{ fontWeight: 700, fontSize: '14px' }}>¥</span>
-                <span style={{ fontWeight: 700 }}>7,442</span>
-                <span style={{ fontWeight: 700, fontSize: '14px' }}>
-                  （送料込み）
-                </span>
-              </div>
-            </div>
-            <hr className="shrink-0 mt-5 h-px border-b border-solid border-gray-200 max-md:max-w-full" />
-          </article>
-
-          <PriceItem
-            productName="タオル5枚"
-            amount="7,760"
-            additionalText="（送料込み）"
-          />
+          ))}
         </div>
       </div>
     </section>

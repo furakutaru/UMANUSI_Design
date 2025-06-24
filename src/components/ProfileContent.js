@@ -1,39 +1,63 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { MessageHeading } from './MessageHeading';
 import { MessageSubtitle } from './MessageSubtitle';
 import { MessageBody } from './MessageBody';
 import { AccordionHeader } from './AccordionHeader';
 
 export const ProfileContent = () => {
+  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const contentRef = useRef(null);
+
   return (
-    <div className="ml-5 w-[67%] max-md:ml-0 max-md:w-full">
-      <div className="flex flex-col mt-16 text-black whitespace-nowrap max-md:mt-10 max-md:max-w-full">
-        <MessageHeading>
-          私も、あなたと同じ一人の馬主です。
-        </MessageHeading>
+    <div className="flex flex-col w-full">
+      <MessageHeading>
+        私も、あなたと同じ一人の馬主です。
+      </MessageHeading>
 
-        <MessageSubtitle>
-          勝った馬も、勝てなかった馬も、みんな宝物。
-        </MessageSubtitle>
+      <MessageSubtitle>
+        勝った馬も、勝てなかった馬も、みんな宝物。
+      </MessageSubtitle>
 
-        <MessageBody>
-          はじめましてデザイナー馬主のUMAです。
-          <br />
-          このサービスを始めたのは、一般的なデザインでは表現しきれない、競馬の世界特有の
-          <br />
-          「熱量」や「物語」を形にしたかったから。
-          <br />
-          勝負服の色に込められた想いや、一戦一戦のドラマ。
-          <br />
-          その価値を、私はあなたの次くらい理解しています。
-          <br />
-          <br />
-          あなたの愛馬との絆、厩舎の誇りを、唯一無二のデザインへ。
-          <br />
-          一つひとつの想いを丁寧に翻訳し、記憶に残る宝物をお届けすることをお約束します。
-        </MessageBody>
-        <div className="mb-8" />
-        <AccordionHeader title="プロフィール" className="mt-8" />
+      <MessageBody>
+        はじめましてデザイナー馬主のUMAです。
+        <br />
+        このサービスを始めたのは、一般的なデザインでは表現しきれない、競馬の世界特有の
+        「熱量」や「物語」を形にしたかったから。
+        <br />
+        勝負服の色に込められた想いや、一戦一戦のドラマ。
+        <br />
+        その価値を、私はあなたの次くらい理解しています。
+        <br />
+        <br />
+        あなたの愛馬との絆、厩舎の誇りを、唯一無二のデザインへ。
+        <br />
+        一つひとつの想いを丁寧に翻訳し、記憶に残る宝物をお届けすることをお約束します。
+      </MessageBody>
+
+      <div className="mt-8 md:mt-12 w-full md:max-w-[700px] mx-auto md:mx-0">
+        <AccordionHeader 
+          title="プロフィール" 
+          isOpen={isAccordionOpen} 
+          setIsOpen={setIsAccordionOpen} 
+        />
+        <div
+          ref={contentRef}
+          className="transition-all duration-500 ease-in-out overflow-hidden bg-black rounded-b-xl"
+          style={{ 
+            maxHeight: isAccordionOpen ? `${contentRef.current?.scrollHeight}px` : '0px',
+            opacity: isAccordionOpen ? 1 : 0,
+          }}
+        >
+          <div className="p-6 text-base text-white whitespace-pre-line break-words">
+            2023年地方馬主資格取得、デザイナー
+            <br />
+            ダビスタで競馬に触れナリタブライアンや黄金世代に青春を費やしブランクがあったのちウマ娘で復帰。
+            <br />
+            馬券はからっきしなので主にG1馬応援。現在は共有馬のみ。
+            <br />
+            夢は一頭持ち、重賞出走、ドバイワールドカップ。
+          </div>
+        </div>
       </div>
     </div>
   );

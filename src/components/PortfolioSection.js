@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PortfolioCard } from "./PortfolioCard";
 import { SliderArrow } from "./SliderArrow";
+// import { SectionWrapper } from './SectionWrapper'; // 必要なら有効化
 
 const portfolioItems = [
   {
@@ -55,9 +56,6 @@ const portfolioItems = [
   }
 ];
 
-const CARD_WIDTH = 700;
-const CARD_HEIGHT = 400;
-
 export const PortfolioSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
@@ -68,7 +66,7 @@ export const PortfolioSection = () => {
     setTimeout(() => {
       setCurrentIndex(nextIndex);
       setIsFading(false);
-    }, 250); // 0.25秒でフェードアウト→切替
+    }, 250);
   };
 
   const handlePrevious = () => {
@@ -84,26 +82,22 @@ export const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="w-full bg-neutral-900">
-      <div className="max-w-[1200px] w-full mx-auto flex flex-col items-center justify-center min-h-screen py-12 relative">
-        <header className="text-center mb-8">
-          <h1 className="text-5xl font-bold leading-10 text-center text-white max-md:text-4xl max-md:leading-9 max-sm:text-3xl max-sm:leading-7">
-            制作実績
-          </h1>
-          <h2 className="mt-4 text-2xl font-semibold leading-8 text-center text-white max-md:text-xl max-md:leading-7 max-sm:text-base max-sm:leading-6">
-            これまでのデザイン実績の一部をご紹介します
-          </h2>
+    <section id="portfolio" className="w-full bg-neutral-900 py-12">
+      <div className="max-w-[1200px] w-full mx-auto flex flex-col items-center justify-center px-4">
+        <header className="text-center">
+          <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white mb-0">制作実績</h1>
+          <h2 className="text-lg md:text-xl font-semibold leading-snug text-white mt-4 mb-6">これまでのデザイン実績の一部をご紹介します</h2>
         </header>
-        <div className="flex flex-col items-center justify-center flex-1 w-full relative">
-          <div className="mx-auto w-[700px] h-[400px] flex-shrink-0 flex items-center justify-center relative">
-            {/* 左右ボタンを画像の端から30px外側に配置 */}
+        <div className="flex flex-col items-center justify-center w-full relative">
+          <div className="mx-auto w-full max-w-[340px] aspect-[7/4] md:max-w-[700px] relative">
+            {/* 左右ボタン */}
             {currentIndex > 0 && (
-              <div className="absolute left-[-30px] top-1/2 -translate-y-1/2 z-20">
+              <div className="hidden md:block absolute left-[-56px] top-1/2 -translate-y-1/2 z-20">
                 <SliderArrow direction="left" onClick={handlePrevious} />
               </div>
             )}
             {currentIndex < total - 1 && (
-              <div className="absolute right-[-30px] top-1/2 -translate-y-1/2 z-20">
+              <div className="hidden md:block absolute right-[-56px] top-1/2 -translate-y-1/2 z-20">
                 <SliderArrow direction="right" onClick={handleNext} />
               </div>
             )}
@@ -116,17 +110,26 @@ export const PortfolioSection = () => {
                 title={portfolioItems[currentIndex].title}
                 description={portfolioItems[currentIndex].description}
                 altText={`Portfolio item: ${portfolioItems[currentIndex].title}`}
-                cardWidth={CARD_WIDTH}
-                cardHeight={CARD_HEIGHT}
               />
             </div>
+            {/* モバイル用左右ボタン */}
+            {currentIndex > 0 && (
+              <button className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full p-1" onClick={handlePrevious} aria-label="前へ">
+                <SliderArrow direction="left" />
+              </button>
+            )}
+            {currentIndex < total - 1 && (
+              <button className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full p-1" onClick={handleNext} aria-label="次へ">
+                <SliderArrow direction="right" />
+              </button>
+            )}
           </div>
           {/* インジケータードット */}
           <div className="flex gap-2 mt-6">
             {portfolioItems.map((_, idx) => (
               <span
                 key={idx}
-                className={`inline-block w-3 h-3 rounded-full ${currentIndex === idx ? 'bg-white' : 'bg-gray-500/50'} transition-colors`}
+                className={`inline-block w-2 h-2 md:w-3 md:h-3 rounded-full ${currentIndex === idx ? 'bg-white' : 'bg-gray-500/50'} transition-colors`}
               />
             ))}
           </div>

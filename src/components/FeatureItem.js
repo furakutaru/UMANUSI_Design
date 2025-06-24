@@ -8,7 +8,7 @@ export const FeatureItem = ({ iconSrc, text }) => {
         className="object-contain shrink-0 self-stretch my-auto w-5 aspect-square"
         alt=""
       />
-      <div className="self-stretch my-auto">{text}</div>
+      <div className="self-stretch my-auto w-full break-words">{text}</div>
     </div>
   );
 }; 

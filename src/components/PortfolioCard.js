@@ -4,14 +4,11 @@ export const PortfolioCard = ({
   image,
   title,
   description,
-  altText = "",
-  cardWidth = 700,
-  cardHeight = 400
+  altText = ""
 }) => {
   return (
     <div
-      className="relative shrink-0 mx-auto flex flex-col justify-end items-center rounded-lg"
-      style={{ width: cardWidth, height: cardHeight }}
+      className="relative shrink-0 mx-auto flex flex-col justify-end items-center rounded-lg w-full aspect-[7/4] md:max-w-[700px] md:aspect-[7/4]"
     >
       <img
         src={image}
@@ -24,11 +21,11 @@ export const PortfolioCard = ({
           background: 'linear-gradient(to top, rgba(0,0,0,0.7) 20%, rgba(0,0,0,0) 40%)'
         }}
       />
-      <div className="relative z-10 w-full px-6 pb-4 text-left">
-        <h3 className="text-2xl font-bold leading-9 text-white mb-1">
+      <div className="relative z-10 w-full px-4 md:px-6 pb-4 text-left">
+        <h3 className="text-lg md:text-2xl font-bold leading-7 md:leading-9 text-white mb-1">
           {title}
         </h3>
-        <p className="text-base leading-7 text-gray-200">
+        <p className="text-sm md:text-base leading-6 md:leading-7 text-gray-200">
           {description}
         </p>
       </div>

@@ -1,49 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { SceneCard } from "./SceneCard";
 import { SliderArrow } from "./SliderArrow";
 
 export function SceneSlider({ scenes }) {
-  // 1画面に表示するカード数
-  const VISIBLE_COUNT = 4;
-  const [startIndex, setStartIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(1);
+  const sliderContentRef = useRef(null);
 
-  const canPrev = startIndex > 0;
-  const canNext = startIndex + VISIBLE_COUNT < scenes.length;
+  // 画面幅から表示枚数を計算
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      if (window.innerWidth >= 1280) setVisibleCount(4);
+      else if (window.innerWidth >= 1024) setVisibleCount(3);
+      else if (window.innerWidth >= 640) setVisibleCount(2);
+      else setVisibleCount(1);
+    };
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
 
+  // currentIndexの最大値を制限
+  useEffect(() => {
+    const maxIndex = Math.max(0, scenes.length - visibleCount);
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [visibleCount, scenes.length]);
+
+  // --- スライド操作 ---
   const handlePrev = () => {
-    if (canPrev) setStartIndex(startIndex - 1);
-  };
-  const handleNext = () => {
-    if (canNext) setStartIndex(startIndex + 1);
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
   };
 
-  // スライド表示するカード群
-  const visibleScenes = scenes.slice(startIndex, startIndex + VISIBLE_COUNT);
+  const handleNext = () => {
+    const maxIndex = Math.max(0, scenes.length - visibleCount);
+    if (currentIndex < maxIndex) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  // --- スライド位置の計算 ---
+  useEffect(() => {
+    if (sliderContentRef.current) {
+      const cardWidth = sliderContentRef.current.children[0].offsetWidth;
+      const offset = -currentIndex * cardWidth;
+      sliderContentRef.current.style.transform = `translateX(${offset}px)`;
+    }
+  }, [currentIndex, visibleCount]);
+
+  const maxIndex = Math.max(0, scenes.length - visibleCount);
 
   return (
-    <div className="relative overflow-hidden mt-7 w-full max-md:max-w-full min-w-0 flex justify-center">
-      <div 
-        className="flex gap-9 w-auto mx-auto transition-all duration-600 ease-out" 
-        style={{ minWidth: 0 }}
-      >
-        {visibleScenes.map((scene) => (
-          <SceneCard
-            key={scene.id}
-            id={scene.id}
-            imageSrc={scene.imageSrc}
-            title={scene.title}
-            description={scene.description}
-            imageAspectRatio={scene.imageAspectRatio}
-            cardPadding={scene.cardPadding}
-          />
-        ))}
+    <div className="relative w-full max-w-7xl mx-auto px-12 md:px-16">
+      <div className="overflow-hidden">
+        <div
+          ref={sliderContentRef}
+          className="flex transition-transform duration-500 ease-in-out"
+        >
+          {scenes.map((scene) => (
+            <div key={scene.id} className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
+              <SceneCard {...scene} />
+            </div>
+          ))}
+        </div>
       </div>
-      {/* 左右ボタン（SliderArrow） */}
-      {canPrev && (
-        <SliderArrow direction="left" onClick={handlePrev} />
+      {currentIndex > 0 && (
+        <SliderArrow direction="left" onClick={handlePrev} variant="scene" />
       )}
-      {canNext && (
-        <SliderArrow direction="right" onClick={handleNext} />
+      {currentIndex < maxIndex && (
+        <SliderArrow direction="right" onClick={handleNext} variant="scene" />
       )}
     </div>
   );

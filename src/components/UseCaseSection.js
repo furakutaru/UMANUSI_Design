@@ -54,13 +54,13 @@ const sceneData = [
 
 export default function UseCaseSection() {
   return (
-    <section className="flex flex-col justify-center py-12">
-      <div className="overflow-hidden mt-7 w-full max-md:max-w-full min-w-0">
+    <section className="relative w-full py-16 overflow-x-clip">
+      <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <header className="text-center">
-          <h1 className="text-4xl font-bold leading-none text-black max-md:max-w-full">
+          <h1 className="text-3xl md:text-4xl font-bold leading-none text-black">
             活用シーン例
           </h1>
-          <h2 className="mt-7 text-2xl font-semibold leading-none text-gray-900 max-md:max-w-full">
+          <h2 className="mt-4 mb-10 text-xl md:text-2xl font-semibold leading-none text-gray-900">
             様々なシーンでご活用いただけます
           </h2>
         </header>

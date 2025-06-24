@@ -13,16 +13,12 @@ export function CTAArea() {
   };
 
   return (
-    <section className="text-lg font-semibold leading-loose text-center text-red-600 whitespace-nowrap">
-      <div className="flex flex-col justify-center items-center px-20 py-14 w-full bg-red-600 max-md:px-5 max-md:max-w-full">
-        <div className="flex flex-col items-center max-w-full w-[268px]">
-          <CTAButton onClick={handleCTAClick}>
-            制作を相談・依頼する
-          </CTAButton>
-        </div>
+    <section className="py-14 md:py-20 bg-red-600">
+      <div className="flex flex-col items-center justify-center">
+        <CTAButton onClick={handleCTAClick} className="h-[64px] w-[340px] text-xl">
+          制作を相談・依頼する
+        </CTAButton>
       </div>
     </section>
   );
-}
-
-export default CTAArea; 
+} 

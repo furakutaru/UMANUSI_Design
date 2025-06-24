@@ -5,11 +5,12 @@ export const ProfileImage = ({
   alt = "Profile image"
 }) => {
   return (
-    <div className="w-[33%] max-md:ml-0 max-md:w-full">
+    <div className="w-full">
       <img
+        loading="lazy"
         src={src}
         alt={alt}
-        className="object-contain grow w-full aspect-[0.75] max-md:mt-10"
+        className="w-full h-auto object-cover"
       />
     </div>
   );
