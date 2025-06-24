@@ -1,0 +1,71 @@
+import React from "react";
+import { SceneSlider } from "./SceneSlider";
+
+const sceneData = [
+  {
+    id: "retirement",
+    imageSrc: "/retirement-scene.png",
+    title: "引退記念",
+    description: "愛馬の軌跡を形に残す記念グッズ全般",
+    imageAspectRatio: "aspect-[1.18]",
+    cardPadding: "pb-16"
+  },
+  {
+    id: "victory",
+    imageSrc: "/victory-scene.png",
+    title: "勝利祝い",
+    description: "栄光の瞬間を記念するグッズ全般",
+    imageAspectRatio: "aspect-[1.59]",
+    cardPadding: "pb-24"
+  },
+  {
+    id: "daily",
+    imageSrc: "/daily-scene.jpg",
+    title: "日常使い",
+    description: "スマホケースやモバイルバッテリーで愛馬を身近に",
+    imageAspectRatio: "aspect-[1.59]",
+    cardPadding: "pb-16"
+  },
+  {
+    id: "fanservice",
+    imageSrc: "/fanservice-scene.png",
+    title: "ファンサービス",
+    description: "シールやバッジをファンへのプレゼントに",
+    imageAspectRatio: "aspect-[1.18]",
+    cardPadding: "pb-16"
+  },
+  {
+    id: "race-scene",
+    imageSrc: "/race-scene.png",
+    title: "レース観戦時",
+    description: "応援タオル、うちわ、Tシャツで仲間と一体感",
+    imageAspectRatio: "aspect-[1.59]",
+    cardPadding: "pb-16"
+  },
+  {
+    id: "owner-friends",
+    imageSrc: "/owner-friends.png",
+    title: "馬主仲間との交流",
+    description: "オリジナル名刺や記念品で話題に",
+    imageAspectRatio: "aspect-[1.59]",
+    cardPadding: "pb-16"
+  }
+];
+
+export default function UseCaseSection() {
+  return (
+    <section className="flex flex-col justify-center py-12">
+      <div className="overflow-hidden mt-7 w-full max-md:max-w-full min-w-0">
+        <header className="text-center">
+          <h1 className="text-4xl font-bold leading-none text-black max-md:max-w-full">
+            活用シーン例
+          </h1>
+          <h2 className="mt-7 text-2xl font-semibold leading-none text-gray-900 max-md:max-w-full">
+            様々なシーンでご活用いただけます
+          </h2>
+        </header>
+        <SceneSlider scenes={sceneData} />
+      </div>
+    </section>
+  );
+} 

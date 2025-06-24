@@ -1,0 +1,108 @@
+import React, { useState } from 'react';
+import { TabButton } from './TabButton';
+import { ServiceContent } from './ServiceContent';
+
+const tabsData = [
+  {
+    id: 'goods',
+    label: '記念グッズ',
+    title: '記念グッズ',
+    description: '勝利記念／引退記念／出走記念など、大切な瞬間を形に残すオリジナルグッズをデザインします。蹄鉄盾・蹄鉄飾り、アクリルスタンド、記念冊子など、幅広いアイテムに対応しています。',
+    features: [
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/ccd2f23440e74cc7d0ab5d2c011bc9e5c85d80f7?placeholderIfAbsent=true', text: '蹄鉄盾・蹄鉄飾り' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/57df909c1f36c27c86e30cb3fb1b586d4ab7e62c?placeholderIfAbsent=true', text: 'トレーディングカード' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/035b2faf4c0fce03a002f8bc2722157656f7d150?placeholderIfAbsent=true', text: '応援タオル' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/ccd2f23440e74cc7d0ab5d2c011bc9e5c85d80f7?placeholderIfAbsent=true', text: 'アクリルスタンド' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/57df909c1f36c27c86e30cb3fb1b586d4ab7e62c?placeholderIfAbsent=true', text: '記念冊子' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/035b2faf4c0fce03a002f8bc2722157656f7d150?placeholderIfAbsent=true', text: 'Tシャツ・キャップ' },
+    ],
+    imageSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/a4bcb62a39eccb2b205d55c596e5f1cf2a57fa21?placeholderIfAbsent=true',
+  },
+  {
+    id: 'logo',
+    label: 'ロゴデザイン',
+    title: 'ロゴデザイン',
+    description: '競馬関連のロゴデザインを専門的に手がけます。馬主様、厩舎様、競馬関連企業様のブランドアイデンティティを表現するロゴを制作いたします。',
+    features: [
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/ccd2f23440e74cc7d0ab5d2c011bc9e5c85d80f7?placeholderIfAbsent=true', text: '馬主ロゴ' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/57df909c1f36c27c86e30cb3fb1b586d4ab7e62c?placeholderIfAbsent=true', text: '厩舎ロゴ' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/035b2faf4c0fce03a002f8bc2722157656f7d150?placeholderIfAbsent=true', text: 'クラブロゴ' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/ccd2f23440e74cc7d0ab5d2c011bc9e5c85d80f7?placeholderIfAbsent=true', text: 'イベントロゴ' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/57df909c1f36c27c86e30cb3fb1b586d4ab7e62c?placeholderIfAbsent=true', text: 'ブランドロゴ' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/035b2faf4c0fce03a002f8bc2722157656f7d150?placeholderIfAbsent=true', text: 'シンボルマーク' },
+    ],
+    imageSrc: "/service-logo.jpg",
+  },
+  {
+    id: 'print',
+    label: '印刷物・販促物',
+    title: '印刷物・販促物',
+    description: '競馬イベントや販促活動に必要な印刷物をトータルでデザインします。パンフレット、ポスター、チラシなど、目的に応じた効果的なデザインを提供します。',
+    features: [
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/ccd2f23440e74cc7d0ab5d2c011bc9e5c85d80f7?placeholderIfAbsent=true', text: 'パンフレット' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/57df909c1f36c27c86e30cb3fb1b586d4ab7e62c?placeholderIfAbsent=true', text: 'ポスター' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/035b2faf4c0fce03a002f8bc2722157656f7d150?placeholderIfAbsent=true', text: 'チラシ' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/ccd2f23440e74cc7d0ab5d2c011bc9e5c85d80f7?placeholderIfAbsent=true', text: '名刺・ショップカード' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/57df909c1f36c27c86e30cb3fb1b586d4ab7e62c?placeholderIfAbsent=true', text: 'カタログ' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/035b2faf4c0fce03a002f8bc2722157656f7d150?placeholderIfAbsent=true', text: 'のぼり・バナー' },
+    ],
+    imageSrc: "/service-print.jpg",
+  },
+  {
+    id: 'web',
+    label: 'SNS・WEBサポート',
+    title: 'SNS・WEBサポート',
+    description: 'SNSやWEBでの情報発信をサポートします。投稿用画像の制作、WEBサイトのデザイン、オンラインでの販促活動に必要な素材を提供します。',
+    features: [
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/ccd2f23440e74cc7d0ab5d2c011bc9e5c85d80f7?placeholderIfAbsent=true', text: 'SNS投稿画像' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/57df909c1f36c27c86e30cb3fb1b586d4ab7e62c?placeholderIfAbsent=true', text: 'WEBバナー' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/035b2faf4c0fce03a002f8bc2722157656f7d150?placeholderIfAbsent=true', text: 'サイトデザイン' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/ccd2f23440e74cc7d0ab5d2c011bc9e5c85d80f7?placeholderIfAbsent=true', text: 'オンライン広告' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/57df909c1f36c27c86e30cb3fb1b586d4ab7e62c?placeholderIfAbsent=true', text: 'メルマガデザイン' },
+      { iconSrc: 'https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/035b2faf4c0fce03a002f8bc2722157656f7d150?placeholderIfAbsent=true', text: 'デジタルコンテンツ' },
+    ],
+    imageSrc: "/service-sns.png",
+  },
+];
+
+export const ServiceSection = () => {
+  const [activeTab, setActiveTab] = useState('goods');
+
+  const currentTabData = tabsData.find(tab => tab.id === activeTab) || tabsData[0];
+
+  return (
+    <section className="relative flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto overflow-hidden py-12">
+      <header className="text-center">
+        <h2 className="text-4xl font-bold leading-none text-black">
+          サービス内容
+        </h2>
+        <p className="mt-9 text-2xl font-semibold leading-none text-gray-900 max-md:max-w-full">
+          競馬に関わる様々なデザインニーズにお応えします
+        </p>
+      </header>
+
+      <div className="flex overflow-hidden flex-col mt-9 max-w-full w-[992px]">
+        <nav className="flex overflow-hidden gap-4 items-center self-center max-w-full text-lg font-semibold leading-loose text-center whitespace-nowrap w-[813px]">
+          {tabsData.map((tab) => (
+            <TabButton
+              key={tab.id}
+              isActive={activeTab === tab.id}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.label}
+            </TabButton>
+          ))}
+        </nav>
+
+        <ServiceContent
+          title={currentTabData.title}
+          description={currentTabData.description}
+          features={currentTabData.features}
+          imageSrc={currentTabData.imageSrc}
+        />
+      </div>
+    </section>
+  );
+};
+
+export default ServiceSection; 
