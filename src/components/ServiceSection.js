@@ -118,7 +118,7 @@ export const ServiceSection = () => {
         <div className={`relative min-h-[420px]`}>
           <div
             key={displayedTab}
-            className={`absolute inset-0 transition-opacity duration-300 ${isTransitioning ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+            className={`relative transition-opacity duration-300 ${isTransitioning ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
           >
             <ServiceContent
               title={tabsData.find(tab => tab.id === displayedTab)?.title}

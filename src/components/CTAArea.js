@@ -18,8 +18,8 @@ export function CTAArea() {
   return (
     <section className="py-10 bg-red-600">
       <div className="flex flex-col items-center justify-center">
-        <div ref={buttonRef}>
-          <CTAButton onClick={handleCTAClick} className="h-[64px] w-[340px] text-xl">
+        <div ref={buttonRef} className="w-[90vw] md:w-[340px] py-4">
+          <CTAButton onClick={handleCTAClick} className="h-[64px] w-full text-xl">
             制作を相談・依頼する
           </CTAButton>
         </div>

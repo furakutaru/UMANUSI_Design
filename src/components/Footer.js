@@ -28,7 +28,7 @@ export const Footer = () => {
           >
             ご依頼、ご相談は、XのリプライまたはDMにてお受けしております。
           </h2>
-          <div ref={buttonRef} style={{ transitionDelay: '0.6s' }}>
+          <div ref={buttonRef} style={{ transitionDelay: '0.6s' }} className="w-[90vw] md:w-[340px] py-4">
             <FooterButton onClick={handleConsultationClick}>
               制作を相談・依頼する
             </FooterButton>
