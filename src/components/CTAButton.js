@@ -1,13 +1,13 @@
 import React from "react";
 
-export function CTAButton({ children, onClick, className = "" }) {
+export const CTAButton = ({ children, onClick, className = "" }) => {
   return (
     <button
-      className={`gap-2.5 px-8 py-4 bg-white rounded-full border border-red-500 border-solid min-h-[62px] text-lg font-semibold leading-none text-red-600 whitespace-nowrap max-md:px-5 ${className}`}
+      className={`relative shrink-0 h-[64px] w-[340px] max-sm:w-full max-sm:max-w-[340px] text-xl font-bold rounded-full bg-white text-red-600 transition-all duration-200 ease-out hover:scale-105 shadow-md border border-red-600 border-solid ${className}`}
       onClick={onClick}
       type="button"
     >
       {children}
     </button>
   );
-} 
+}; 

@@ -7,6 +7,7 @@ export function SceneSlider({ scenes }) {
   const [visibleCount, setVisibleCount] = useState(1);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [showAttention, setShowAttention] = useState(true);
   const sliderContentRef = useRef(null);
 
   // 画面幅から表示枚数を計算
@@ -60,6 +61,7 @@ export function SceneSlider({ scenes }) {
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+      setShowAttention(false);
     }
   };
 
@@ -67,6 +69,7 @@ export function SceneSlider({ scenes }) {
     const maxIndex = Math.max(0, scenes.length - visibleCount);
     if (currentIndex < maxIndex) {
       setCurrentIndex(currentIndex + 1);
+      setShowAttention(false);
     }
   };
 
@@ -104,7 +107,7 @@ export function SceneSlider({ scenes }) {
         <SliderArrow direction="left" onClick={handlePrev} variant="scene" />
       )}
       {currentIndex < maxIndex && (
-        <SliderArrow direction="right" onClick={handleNext} variant="scene" />
+        <SliderArrow direction="right" onClick={handleNext} variant="scene" className={showAttention ? 'animate-attention' : ''} />
       )}
     </div>
   );

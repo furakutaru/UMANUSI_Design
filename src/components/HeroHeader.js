@@ -1,11 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import { HeroContent } from "./HeroContent";
+import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 export function HeroHeader() {
   const videoRef = useRef(null);
+  const fadeRef = useFadeInOnScroll();
 
   useEffect(() => {
+    console.log('useEffect実行');
     const video = videoRef.current;
+    console.log('videoRef.current:', video);
     if (video) {
       video.playbackRate = 0.5; // スローモーション
       video.loop = true; // ループ再生を明示
@@ -13,16 +17,24 @@ export function HeroHeader() {
     // Parallax効果
     const handleScroll = () => {
       if (video) {
-        const scrollY = window.scrollY;
-        video.style.transform = `translateY(${scrollY * 0.2}px)`;
+        const scrollY = window.scrollY || document.body.scrollTop || document.documentElement.scrollTop;
+        const translateY = Math.min(scrollY * 0.4, 200);
+        const scale = 1.08 + Math.min(scrollY, 400) * 0.0007;
+        const transformValue = `translateY(${translateY}px) scale(${scale})`;
+        video.style.transform = transformValue;
+        console.log('scrollY:', scrollY, 'transform:', transformValue);
       }
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.body.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.body.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
-    <header className="relative w-full h-[700px] md:h-screen max-h-[800px] overflow-hidden text-center">
+    <header ref={fadeRef} className="relative w-full h-[700px] md:h-screen max-h-[800px] overflow-hidden text-center">
       {/* 背景動画 */}
       <video
         ref={videoRef}
@@ -37,7 +49,7 @@ export function HeroHeader() {
       <div className="absolute inset-0 bg-black/60 z-10" />
       
       {/* コンテンツ */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center -mt-[50px]">
+      <div className="relative z-20 h-full flex flex-col items-center justify-center">
         <HeroContent />
       </div>
     </header>

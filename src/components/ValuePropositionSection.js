@@ -1,5 +1,6 @@
 import React from 'react';
 import ValueCard from './ValueCard';
+import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 const valuesData = [
   {
@@ -27,26 +28,41 @@ const valuesData = [
 ];
 
 export const ValuePropositionSection = () => {
+  const cardRefs = [useFadeInOnScroll(), useFadeInOnScroll(), useFadeInOnScroll()];
+
   return (
-    <section className="relative w-full py-8 md:py-20 md:h-[580px] overflow-x-clip">
-      {/* 背景とオーバーレイを横いっぱいに */}
-      <div
-        className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full bg-center bg-cover bg-fixed z-0"
-        style={{ backgroundImage: `url('/value-bg.jpg')` }}
-      />
-      <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full bg-black/60 z-10" />
+    <section 
+      className="relative w-full py-12 md:py-20 bg-center bg-cover bg-fixed"
+      style={{ 
+        backgroundImage: `url('/value-bg.jpg')`,
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* オーバーレイ */}
+      <div className="absolute inset-0 bg-black/60 z-10" />
 
       {/* コンテンツ */}
       <div className="relative z-20 w-full h-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-        <h1 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg">
-          私たちのデザインが提供する3つの価値
-        </h1>
-        <p className="mt-4 mb-8 md:mb-12 text-lg md:text-xl font-semibold text-white text-center drop-shadow-md">
-          勝った馬も、勝てなかった馬も、みんな宝物。
-        </p>
-        <div className="flex flex-col md:flex-row gap-4 md:gap-8 w-full max-w-5xl items-stretch">
+        {/* 見出し群 */}
+        <div ref={useFadeInOnScroll()}>
+          <h1 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg">
+            私たちのデザインが提供する3つの価値
+          </h1>
+          <p className="mt-4 mb-8 md:mb-12 text-lg md:text-xl font-semibold text-white text-center drop-shadow-md">
+            勝った馬も、勝てなかった馬も、みんな宝物。
+          </p>
+        </div>
+        {/* CSS Gridを使用して高さを強制的に揃える */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full max-w-5xl">
           {valuesData.map((value, index) => (
-            <ValueCard key={index} title={value.title} items={value.items} />
+            <div
+              ref={cardRefs[index]}
+              key={index}
+              style={{ transitionDelay: `${index * 0.18}s` }}
+              className="h-full"
+            >
+              <ValueCard title={value.title} items={value.items} />
+            </div>
           ))}
         </div>
       </div>

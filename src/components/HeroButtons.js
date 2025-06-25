@@ -22,16 +22,16 @@ export function HeroButtons() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 w-full">
-      <button 
+    <div className="flex flex-col md:flex-row gap-4 w-full items-center">
+      <button
+        className="px-8 py-4 rounded-full bg-red-600 text-white text-lg font-bold shadow-md transition-all duration-200 ease-out hover:bg-white hover:text-red-600 hover:scale-105 min-w-[240px] w-[90%] md:w-auto max-w-full"
         onClick={handleConsultationClick}
-        className="flex-1 px-6 py-4 text-base font-semibold text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors"
       >
         制作を相談・依頼する
       </button>
-      <button 
+      <button
+        className="px-8 py-4 rounded-full bg-white text-red-600 text-lg font-bold shadow-md border border-red-600 border-solid transition-all duration-200 ease-out hover:bg-red-600 hover:text-white hover:scale-105 min-w-[240px] w-[90%] md:w-auto max-w-full md:ml-4"
         onClick={handlePortfolioClick}
-        className="flex-1 px-6 py-4 text-base font-semibold text-red-500 bg-white rounded-full border border-red-500 hover:bg-red-50 transition-colors"
       >
         制作実績を見る
       </button>

@@ -1,5 +1,6 @@
 import React from "react";
 import { SceneSlider } from "./SceneSlider";
+import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 const sceneData = [
   {
@@ -53,10 +54,13 @@ const sceneData = [
 ];
 
 export default function UseCaseSection() {
+  const headerRef = useFadeInOnScroll();
+  const sliderRef = useFadeInOnScroll();
+
   return (
     <section className="relative w-full py-8 md:py-16 overflow-x-clip">
       <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="text-center">
+        <header ref={headerRef} className="text-center">
           <h1 className="text-3xl md:text-4xl font-bold leading-none text-black">
             活用シーン例
           </h1>
@@ -64,7 +68,9 @@ export default function UseCaseSection() {
             様々なシーンでご活用いただけます
           </h2>
         </header>
-        <SceneSlider scenes={sceneData} />
+        <div ref={sliderRef} style={{ transitionDelay: '0.3s' }}>
+          <SceneSlider scenes={sceneData} />
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TabButton } from './TabButton';
 import { ServiceContent } from './ServiceContent';
+import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 const tabsData = [
   {
@@ -67,11 +68,29 @@ const tabsData = [
 
 export const ServiceSection = () => {
   const [activeTab, setActiveTab] = useState('goods');
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const currentTabData = tabsData.find(tab => tab.id === activeTab) || tabsData[0];
+  
+  const headerRef = useFadeInOnScroll();
+  const contentRef = useFadeInOnScroll();
+
+  // アニメーション付きタブ切り替え
+  const [displayedTab, setDisplayedTab] = useState(activeTab);
+  React.useEffect(() => {
+    if (activeTab !== displayedTab) {
+      setIsTransitioning(true);
+      const timeout = setTimeout(() => {
+        setDisplayedTab(activeTab);
+        setIsTransitioning(false);
+      }, 300); // 300msで切り替え
+      return () => clearTimeout(timeout);
+    }
+  }, [activeTab, displayedTab]);
 
   return (
     <section className="w-full max-w-[1200px] mx-auto py-8 md:py-16 px-4 sm:px-6 lg:px-8">
-      <header className="text-center w-full">
+      {/* ヘッダー：最初にフェードイン */}
+      <header ref={headerRef} className="text-center w-full">
         <h1 className="text-3xl md:text-4xl font-bold leading-none text-black mb-0">
           サービス内容
         </h1>
@@ -80,7 +99,8 @@ export const ServiceSection = () => {
         </h2>
       </header>
 
-      <div className="flex flex-col mt-9 w-full max-w-[992px] mx-auto">
+      {/* タブボタンとServiceContent：次にフェードイン */}
+      <div ref={contentRef} style={{ transitionDelay: '0.3s' }} className="flex flex-col mt-9 w-full max-w-[992px] mx-auto">
         <nav className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-2 md:gap-4 self-center w-full text-lg font-semibold leading-loose text-center price-list">
           {tabsData.map((tab) => (
             <div key={tab.id} className="w-full md:w-auto">
@@ -94,12 +114,20 @@ export const ServiceSection = () => {
           ))}
         </nav>
 
-        <ServiceContent
-          title={currentTabData.title}
-          description={currentTabData.description}
-          features={currentTabData.features}
-          imageSrc={currentTabData.imageSrc}
-        />
+        {/* アニメーション付きServiceContent */}
+        <div className={`relative min-h-[420px]`}>
+          <div
+            key={displayedTab}
+            className={`absolute inset-0 transition-opacity duration-300 ${isTransitioning ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          >
+            <ServiceContent
+              title={tabsData.find(tab => tab.id === displayedTab)?.title}
+              description={tabsData.find(tab => tab.id === displayedTab)?.description}
+              features={tabsData.find(tab => tab.id === displayedTab)?.features}
+              imageSrc={tabsData.find(tab => tab.id === displayedTab)?.imageSrc}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { PortfolioCard } from "./PortfolioCard";
 import { SliderArrow } from "./SliderArrow";
+import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 // import { SectionWrapper } from './SectionWrapper'; // 必要なら有効化
 
 const portfolioItems = [
@@ -61,7 +62,10 @@ export const PortfolioSection = () => {
   const [isFading, setIsFading] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [showAttention, setShowAttention] = useState(true);
   const sliderRef = useRef(null);
+  const headerRef = useFadeInOnScroll();
+  const sliderContentRef = useFadeInOnScroll();
   const total = portfolioItems.length;
 
   // スワイプ機能
@@ -95,6 +99,7 @@ export const PortfolioSection = () => {
     setTimeout(() => {
       setCurrentIndex(nextIndex);
       setIsFading(false);
+      setShowAttention(false);
     }, 250);
   };
 
@@ -113,11 +118,14 @@ export const PortfolioSection = () => {
   return (
     <section id="portfolio" className="w-full bg-neutral-900 pt-8 pb-12">
       <div className="max-w-[1200px] w-full mx-auto flex flex-col items-center justify-center px-4">
-        <header className="text-center">
+        {/* ヘッダー：最初にフェードイン */}
+        <header ref={headerRef} className="text-center">
           <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white mb-0">制作実績</h1>
           <h2 className="text-lg md:text-xl font-semibold leading-snug text-white mt-4 mb-6">これまでのデザイン実績の一部をご紹介します</h2>
         </header>
-        <div className="flex flex-col items-center justify-center w-full relative">
+        
+        {/* スライダー：次にフェードイン */}
+        <div ref={sliderContentRef} style={{ transitionDelay: '0.3s' }} className="flex flex-col items-center justify-center w-full relative">
           <div 
             ref={sliderRef}
             className="mx-auto w-full max-w-[340px] aspect-[7/4] md:max-w-[700px] relative"
@@ -133,7 +141,7 @@ export const PortfolioSection = () => {
             )}
             {currentIndex < total - 1 && (
               <div className="hidden md:block absolute right-[-56px] top-1/2 -translate-y-1/2 z-20">
-                <SliderArrow direction="right" onClick={handleNext} />
+                <SliderArrow direction="right" onClick={handleNext} className={showAttention ? 'animate-attention' : ''} />
               </div>
             )}
             <div
@@ -155,7 +163,7 @@ export const PortfolioSection = () => {
             )}
             {currentIndex < total - 1 && (
               <div className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20">
-                <SliderArrow direction="right" onClick={handleNext} variant="scene" />
+                <SliderArrow direction="right" onClick={handleNext} variant="scene" className={showAttention ? 'animate-attention' : ''} />
               </div>
             )}
           </div>

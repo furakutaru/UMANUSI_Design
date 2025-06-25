@@ -1,5 +1,6 @@
 import React from "react";
 import { FeatureCard } from "./FeatureCard";
+import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 const memorialItems = [
   {
@@ -63,10 +64,13 @@ const priceCards = [
 ];
 
 export function PriceSection() {
+  const headerRef = useFadeInOnScroll();
+  const cardRefs = [useFadeInOnScroll(), useFadeInOnScroll(), useFadeInOnScroll()];
+
   return (
     <section id="price" className="w-full bg-white py-6 md:py-16">
       <div className="max-w-[1200px] mx-auto px-4">
-        <header className="text-center mb-8 md:mb-12">
+        <header ref={headerRef} className="text-center mb-8 md:mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-black">料金</h1>
           <h2 className="mt-4 text-lg md:text-xl font-semibold text-gray-800">
             デザインの複雑さや数量によって価格が変動します
@@ -74,8 +78,13 @@ export function PriceSection() {
         </header>
         
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch justify-items-center price-list">
-          {priceCards.map((card) => (
-            <li key={card.title} className="flex flex-col w-full max-w-sm">
+          {priceCards.map((card, index) => (
+            <li 
+              key={card.title} 
+              className="flex flex-col w-full max-w-sm"
+              ref={cardRefs[index]}
+              style={{ transitionDelay: `${index * 0.18}s` }}
+            >
               <FeatureCard 
                 title={card.title}
                 items={card.items}

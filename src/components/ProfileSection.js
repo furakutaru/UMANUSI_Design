@@ -2,11 +2,15 @@ import React from 'react';
 import SectionWrapper from './SectionWrapper';
 import { ProfileImage } from './ProfileImage';
 import { ProfileContent } from './ProfileContent';
+import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 export const ProfileSection = ({
   imageUrl = "/profile.png",
   imageAlt = "Profile image of UMA, designer horse owner"
 }) => {
+  const headingRef = useFadeInOnScroll();
+  const contentRef = useFadeInOnScroll();
+  
   return (
     <section id="profile" className="w-full py-8 md:py-10 bg-gray-50">
       <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,7 +22,7 @@ export const ProfileSection = ({
           
           {/* 右側：テキストコンテンツ */}
           <div className="w-full md:w-2/3">
-            <ProfileContent />
+            <ProfileContent headingRef={headingRef} contentRef={contentRef} />
           </div>
         </div>
       </div>
