@@ -54,7 +54,7 @@ const sceneData = [
 
 export default function UseCaseSection() {
   return (
-    <section className="relative w-full py-16 overflow-x-clip">
+    <section className="relative w-full py-8 md:py-16 overflow-x-clip">
       <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <header className="text-center">
           <h1 className="text-3xl md:text-4xl font-bold leading-none text-black">

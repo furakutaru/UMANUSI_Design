@@ -28,7 +28,7 @@ const valuesData = [
 
 export const ValuePropositionSection = () => {
   return (
-    <section className="relative w-full py-16 md:py-20 md:h-[580px] overflow-x-clip">
+    <section className="relative w-full py-8 md:py-20 md:h-[580px] overflow-x-clip">
       {/* 背景とオーバーレイを横いっぱいに */}
       <div
         className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 h-full bg-center bg-cover bg-fixed z-0"
@@ -44,7 +44,7 @@ export const ValuePropositionSection = () => {
         <p className="mt-4 mb-8 md:mb-12 text-lg md:text-xl font-semibold text-white text-center drop-shadow-md">
           勝った馬も、勝てなかった馬も、みんな宝物。
         </p>
-        <div className="flex flex-col md:flex-row gap-8 w-full max-w-5xl items-stretch">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8 w-full max-w-5xl items-stretch">
           {valuesData.map((value, index) => (
             <ValueCard key={index} title={value.title} items={value.items} />
           ))}

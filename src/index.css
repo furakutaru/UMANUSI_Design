@@ -22,7 +22,7 @@ code {
 }
 
 /* モダンなリストインデント（2行目以降を字下げ） */
-li {
+.modern-indent.feature-list > li {
   text-indent: -1em;
   padding-left: 1.5em;
   /* 2行目以降をインデント */

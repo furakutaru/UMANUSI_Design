@@ -13,7 +13,7 @@ export function CTAArea() {
   };
 
   return (
-    <section className="py-14 md:py-20 bg-red-600">
+    <section className="py-10 bg-red-600">
       <div className="flex flex-col items-center justify-center">
         <CTAButton onClick={handleCTAClick} className="h-[64px] w-[340px] text-xl">
           制作を相談・依頼する

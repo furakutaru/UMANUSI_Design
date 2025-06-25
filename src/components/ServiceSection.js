@@ -70,7 +70,7 @@ export const ServiceSection = () => {
   const currentTabData = tabsData.find(tab => tab.id === activeTab) || tabsData[0];
 
   return (
-    <section className="w-full max-w-[1200px] mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full max-w-[1200px] mx-auto py-8 md:py-16 px-4 sm:px-6 lg:px-8">
       <header className="text-center w-full">
         <h1 className="text-3xl md:text-4xl font-bold leading-none text-black mb-0">
           サービス内容
@@ -81,9 +81,9 @@ export const ServiceSection = () => {
       </header>
 
       <div className="flex flex-col mt-9 w-full max-w-[992px] mx-auto">
-        <nav className="flex flex-wrap justify-center gap-4 self-center w-full text-lg font-semibold leading-loose text-center">
+        <nav className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-2 md:gap-4 self-center w-full text-lg font-semibold leading-loose text-center price-list">
           {tabsData.map((tab) => (
-            <div key={tab.id} className="basis-1/2 md:basis-auto">
+            <div key={tab.id} className="w-full md:w-auto">
               <TabButton
                 isActive={activeTab === tab.id}
                 onClick={() => setActiveTab(tab.id)}

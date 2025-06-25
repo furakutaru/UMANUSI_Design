@@ -21,7 +21,7 @@ const chunkArray = (arr, size) => {
 export const PrintPrice = () => {
   const rows = chunkArray(printPriceData, 2);
   return (
-    <section className="w-full bg-white py-12 md:py-16">
+    <section className="w-full bg-white py-6 md:py-16">
       <div className="max-w-[1200px] mx-auto px-4">
         <header className="text-center mb-8 md:mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-black">印刷代参考料金</h1>
@@ -34,13 +34,13 @@ export const PrintPrice = () => {
             <div key={rowIdx} className="flex flex-col md:flex-row gap-6">
               {row.map((item, idx) => (
                 <article key={idx} className="flex-1 bg-white p-0 flex flex-col justify-between min-w-0">
-                  <div className="flex flex-wrap gap-5 justify-between items-center py-3 px-0">
-                    <h3 className="text-base font-semibold text-gray-900 flex-1 min-w-0 truncate">{item.productName}</h3>
-                    <div className="font-bold text-xl text-red-600 text-right flex items-end gap-1">
+                  <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-start md:items-center py-0 px-0">
+                    <h3 className="text-base font-semibold text-gray-900 flex-1 min-w-0">{item.productName}</h3>
+                    <div className="font-bold text-xl text-red-600 text-right flex items-end gap-1 self-end">
                       <span className="text-sm align-sub">¥</span>
                       <span>{item.amount}</span>
                       {item.additionalText && (
-                        <span className="text-xs text-gray-500 ml-1">{item.additionalText}</span>
+                        <span className="text-xs text-gray-500">{item.additionalText}</span>
                       )}
                     </div>
                   </div>

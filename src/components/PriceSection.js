@@ -64,7 +64,7 @@ const priceCards = [
 
 export function PriceSection() {
   return (
-    <section id="price" className="w-full bg-white py-12 md:py-16">
+    <section id="price" className="w-full bg-white py-6 md:py-16">
       <div className="max-w-[1200px] mx-auto px-4">
         <header className="text-center mb-8 md:mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-black">料金</h1>
@@ -73,9 +73,9 @@ export function PriceSection() {
           </h2>
         </header>
         
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch justify-items-center price-list">
           {priceCards.map((card) => (
-            <li key={card.title} className="flex flex-col">
+            <li key={card.title} className="flex flex-col w-full max-w-sm">
               <FeatureCard 
                 title={card.title}
                 items={card.items}

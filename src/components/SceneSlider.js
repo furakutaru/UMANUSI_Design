@@ -5,6 +5,8 @@ import { SliderArrow } from "./SliderArrow";
 export function SceneSlider({ scenes }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(1);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
   const sliderContentRef = useRef(null);
 
   // 画面幅から表示枚数を計算
@@ -27,6 +29,32 @@ export function SceneSlider({ scenes }) {
       setCurrentIndex(maxIndex);
     }
   }, [visibleCount, scenes.length]);
+
+  // スワイプ機能
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentIndex < Math.max(0, scenes.length - visibleCount)) {
+      handleNext();
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      handlePrev();
+    }
+  };
 
   // --- スライド操作 ---
   const handlePrev = () => {
@@ -55,7 +83,12 @@ export function SceneSlider({ scenes }) {
 
   return (
     <div className="relative w-full max-w-7xl mx-auto px-12 md:px-16">
-      <div className="overflow-hidden">
+      <div 
+        className="overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         <div
           ref={sliderContentRef}
           className="flex transition-transform duration-500 ease-in-out"

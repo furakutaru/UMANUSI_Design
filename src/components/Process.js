@@ -56,14 +56,14 @@ export default function Process() {
             安心してご依頼いただけるよう、明確なプロセスでお進めします
           </h2>
         </header>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
           {processSteps.map((step, index) => (
             <div
               key={index}
               className="relative flex flex-col items-center w-full max-w-xs mx-auto"
             >
               {/* ナンバーをカード左上角より上に重ねる */}
-              <div className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/4 z-20">
+              <div className="absolute left-3 top-0 -translate-x-1/2 -translate-y-1/4 z-20">
                 <ProcessNumberBadge number={step.number} />
               </div>
               <ProcessCard

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { PortfolioCard } from "./PortfolioCard";
 import { SliderArrow } from "./SliderArrow";
 // import { SectionWrapper } from './SectionWrapper'; // 必要なら有効化
@@ -59,7 +59,36 @@ const portfolioItems = [
 export const PortfolioSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const sliderRef = useRef(null);
   const total = portfolioItems.length;
+
+  // スワイプ機能
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentIndex < total - 1) {
+      handleNext();
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      handlePrevious();
+    }
+  };
 
   const handleChange = (nextIndex) => {
     setIsFading(true);
@@ -82,14 +111,20 @@ export const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="w-full bg-neutral-900 py-12">
+    <section id="portfolio" className="w-full bg-neutral-900 pt-8 pb-12">
       <div className="max-w-[1200px] w-full mx-auto flex flex-col items-center justify-center px-4">
         <header className="text-center">
           <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white mb-0">制作実績</h1>
           <h2 className="text-lg md:text-xl font-semibold leading-snug text-white mt-4 mb-6">これまでのデザイン実績の一部をご紹介します</h2>
         </header>
         <div className="flex flex-col items-center justify-center w-full relative">
-          <div className="mx-auto w-full max-w-[340px] aspect-[7/4] md:max-w-[700px] relative">
+          <div 
+            ref={sliderRef}
+            className="mx-auto w-full max-w-[340px] aspect-[7/4] md:max-w-[700px] relative"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
             {/* 左右ボタン */}
             {currentIndex > 0 && (
               <div className="hidden md:block absolute left-[-56px] top-1/2 -translate-y-1/2 z-20">
@@ -114,14 +149,14 @@ export const PortfolioSection = () => {
             </div>
             {/* モバイル用左右ボタン */}
             {currentIndex > 0 && (
-              <button className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full p-1" onClick={handlePrevious} aria-label="前へ">
-                <SliderArrow direction="left" />
-              </button>
+              <div className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20">
+                <SliderArrow direction="left" onClick={handlePrevious} variant="scene" />
+              </div>
             )}
             {currentIndex < total - 1 && (
-              <button className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full p-1" onClick={handleNext} aria-label="次へ">
-                <SliderArrow direction="right" />
-              </button>
+              <div className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20">
+                <SliderArrow direction="right" onClick={handleNext} variant="scene" />
+              </div>
             )}
           </div>
           {/* インジケータードット */}
