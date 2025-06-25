@@ -46,10 +46,10 @@ export const ValuePropositionSection = () => {
         {/* 見出し群 */}
         <div ref={useFadeInOnScroll()}>
           <h1 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg">
-            私たちのデザインが提供する3つの価値
+            UMANUSI Designが提供する3つの価値
           </h1>
           <p className="mt-4 mb-8 md:mb-12 text-lg md:text-xl font-semibold text-white text-center drop-shadow-md">
-            勝った馬も、勝てなかった馬も、みんな宝物。
+            馬主・厩舎・牧場の"想い"を、デザイン制作から納品までトータルで支援します。
           </p>
         </div>
         {/* CSS Gridを使用して高さを強制的に揃える */}
