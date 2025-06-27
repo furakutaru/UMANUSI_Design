@@ -1,19 +1,27 @@
 import React from "react";
 
+interface PortfolioCardProps {
+  image: string;
+  title: string;
+  description: string;
+  altText?: string;
+}
+
 export const PortfolioCard = ({
   image,
   title,
   description,
   altText = ""
-}) => {
+}: PortfolioCardProps) => {
   return (
     <div
       className="relative shrink-0 mx-auto flex flex-col justify-end items-center rounded-lg w-full aspect-[7/4] md:max-w-[700px] md:aspect-[7/4]"
     >
       <img
-        src={image}
+        src={image.replace(/\.(png|jpg)$/, '.webp')}
         alt={altText}
         className="object-cover absolute top-0 left-0 rounded-lg w-full h-full"
+        loading="lazy"
       />
       <div
         className="absolute top-0 left-0 w-full h-full rounded-lg pointer-events-none"

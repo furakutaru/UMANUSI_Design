@@ -1,6 +1,11 @@
 import React from 'react';
 
-export const FeatureItem = ({ iconSrc, text }) => {
+interface FeatureItemProps {
+  iconSrc: string;
+  text: string;
+}
+
+export const FeatureItem = ({ iconSrc, text }: FeatureItemProps) => {
   return (
     <div className="flex gap-2 items-center">
       <img

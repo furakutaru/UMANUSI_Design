@@ -1,6 +1,12 @@
 import React from 'react';
 
-export const AccordionHeader = ({ title, isOpen, setIsOpen }) => {
+interface AccordionHeaderProps {
+  title: string;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}
+
+export const AccordionHeader = ({ title, isOpen, setIsOpen }: AccordionHeaderProps) => {
   return (
     <button
       onClick={() => setIsOpen(!isOpen)}

@@ -7,52 +7,52 @@ import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 const portfolioItems = [
   {
-    image: "/portfolio-horse-logo.jpg",
+    image: "/portfolio-horse-logo.webp",
     title: "馬名ロゴ",
     description: "オリジナルグッズや出馬予告画像、メンコなどに利用"
   },
   {
-    image: "/portfolio-luminaval-towel.jpg",
+    image: "/portfolio-luminaval-towel.webp",
     title: "ルミナヴァル号フェイスタオル",
     description: "口取り式で掲げたり応援にも使えます"
   },
   {
-    image: "/portfolio-age-runner-card.jpg",
+    image: "/portfolio-age-runner-card.webp",
     title: "エイジランナー号トレーディングカード",
     description: "サインを貰うのにも最適"
   },
   {
-    image: "/portfolio-firmarpoint-card.jpg",
+    image: "/portfolio-firmarpoint-card.webp",
     title: "フェルマーポイント号優勝記念トレーディングカード",
     description: "話題になったゴリアット号のトレーディングカードと同じフォーマットで"
   },
   {
-    image: "/portfolio-firmarpoint-stand.jpg",
+    image: "/portfolio-firmarpoint-stand.webp",
     title: "フェルマーポイント号優勝記念アクリルスタンド",
     description: "口取り写真をアクリルスタンドに加工することで立体感のある特別な仕上がりに"
   },
   {
-    image: "/portfolio-sun-or-slice-cap.jpg",
+    image: "/portfolio-sun-or-slice-cap.webp",
     title: "サンオルソーライス号キャップ",
     description: "関係者へのプレゼントにも、帽子タイプや刺繍なども選べます"
   },
   {
-    image: "/portfolio-sun-or-slice-stand.jpg",
+    image: "/portfolio-sun-or-slice-stand.webp",
     title: "サンオルソーライス号重賞出走記念アクリルスタンド",
     description: "台座をゼッケンに、疾走中の写真を使うことで躍動感が有る仕上がりに"
   },
   {
-    image: "/portfolio-south-express-shield.jpg",
+    image: "/portfolio-south-express-shield.webp",
     title: "サウスエクスプレス号蹄鉄盾",
     description: "蹄鉄は幸運のお守りともしられインテリアにも最適です"
   },
   {
-    image: "/portfolio-pick-and-roll-shield.jpg",
+    image: "/portfolio-pick-and-roll-shield.webp",
     title: "ピックアンドロール号蹄鉄盾",
     description: "デザイン自由度の高い蹄鉄盾"
   },
   {
-    image: "/portfolio-pick-and-roll-photo.jpg",
+    image: "/portfolio-pick-and-roll-photo.webp",
     title: "ピックアンドロール号勝利写真",
     description: "L版の勝利写真をカスタマイズ"
   }

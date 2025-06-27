@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-export const FeatureCard = ({ title, items, renderItem }) => {
+interface FeatureCardProps {
+  title: string;
+  items: any[];
+  renderItem: (item: any, index: number, total: number) => ReactNode;
+}
+
+export const FeatureCard = ({ title, items, renderItem }: FeatureCardProps) => {
   return (
     <div className="flex flex-col bg-white border border-gray-300 shadow-md flex-1 h-full rounded-lg overflow-hidden">
       <header className="flex items-center justify-center h-14 px-4 py-2 w-full text-xl md:text-2xl font-bold leading-none text-center text-white bg-red-600">

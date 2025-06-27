@@ -6,7 +6,7 @@ import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 const sceneData = [
   {
     id: "retirement",
-    imageSrc: "/retirement-scene.png",
+    imageSrc: "/retirement-scene.webp",
     title: "引退記念",
     description: "愛馬の軌跡を形に残す記念グッズ全般",
     imageAspectRatio: "aspect-[1.18]",
@@ -14,7 +14,7 @@ const sceneData = [
   },
   {
     id: "victory",
-    imageSrc: "/victory-scene.png",
+    imageSrc: "/victory-scene.webp",
     title: "勝利祝い",
     description: "栄光の瞬間を記念するグッズ全般",
     imageAspectRatio: "aspect-[1.59]",
@@ -22,7 +22,7 @@ const sceneData = [
   },
   {
     id: "daily",
-    imageSrc: "/daily-scene.jpg",
+    imageSrc: "/daily-scene.webp",
     title: "日常使い",
     description: "スマホケースやモバイルバッテリーで愛馬を身近に",
     imageAspectRatio: "aspect-[1.59]",
@@ -30,7 +30,7 @@ const sceneData = [
   },
   {
     id: "fanservice",
-    imageSrc: "/fanservice-scene.png",
+    imageSrc: "/fanservice-scene.webp",
     title: "ファンサービス",
     description: "シールやバッジをファンへのプレゼントに",
     imageAspectRatio: "aspect-[1.18]",
@@ -38,7 +38,7 @@ const sceneData = [
   },
   {
     id: "race-scene",
-    imageSrc: "/race-scene.png",
+    imageSrc: "/race-scene.webp",
     title: "レース観戦時",
     description: "応援タオル、うちわ、Tシャツで仲間と一体感",
     imageAspectRatio: "aspect-[1.59]",
@@ -46,7 +46,7 @@ const sceneData = [
   },
   {
     id: "owner-friends",
-    imageSrc: "/owner-friends.png",
+    imageSrc: "/owner-friends.webp",
     title: "馬主仲間との交流",
     description: "オリジナル名刺や記念品で話題に",
     imageAspectRatio: "aspect-[1.59]",

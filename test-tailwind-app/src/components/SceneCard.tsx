@@ -1,5 +1,14 @@
 import React from "react";
 
+interface SceneCardProps {
+  id: string;
+  imageSrc: string;
+  title: string;
+  description: string;
+  imageAspectRatio?: string;
+  cardPadding?: string;
+}
+
 export function SceneCard({
   id,
   imageSrc,
@@ -7,14 +16,15 @@ export function SceneCard({
   description,
   imageAspectRatio = "aspect-[1.18]",
   cardPadding = "pb-16"
-}) {
+}: SceneCardProps) {
   return (
     <article className="w-[300px] min-w-0 max-w-full h-full flex flex-col">
       <div className="flex flex-col bg-white rounded-xl border-2 border border-solid shadow-[0px_1px_2px_rgba(0,0,0,0.05)] h-full flex-1 pb-6 w-full min-w-0">
         <img
-          src={imageSrc}
+          src={imageSrc.replace(/\.(png|jpg)$/, '.webp')}
           alt={title}
           className={`w-full h-48 object-cover rounded-t-[0.6rem] min-w-0 ${id === 'retirement' ? 'object-top' : ''}`}
+          loading="lazy"
         />
         <div className="flex flex-col px-7 mt-6 max-md:px-5 flex-1 w-full min-w-0">
           <h3 className="text-xl font-bold leading-snug text-gray-900 break-words w-full min-w-0">

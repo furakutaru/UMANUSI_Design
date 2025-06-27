@@ -1,6 +1,10 @@
 import React from "react";
 
-export const CheckIcon = ({ className }) => {
+interface CheckIconProps {
+  className?: string;
+}
+
+export const CheckIcon = ({ className = "" }: CheckIconProps) => {
   return (
     <svg 
       className={`w-5 h-5 text-red-500 flex-shrink-0 ${className}`} 
