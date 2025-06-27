@@ -4,7 +4,7 @@ import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
 
 const printPriceData = [
   { productName: "名刺20部両面カラー", amount: "1,050", additionalText: "（送料込み）" },
-  { productName: "横断幕90×110ｃｍ", amount: "5,8845", additionalText: "（送料込み）" },
+  { productName: "横断幕90×110ｃｍ", amount: "5,845", additionalText: "（送料込み）" },
   { productName: "キャッププリント15個", amount: "35,000", additionalText: "（送料、キャップ代込み）" },
   { productName: "トレーディングカード1種20枚", amount: "1,920", additionalText: "（送料込み）" },
   { productName: "アクリルスタンド5個75×100mm", amount: "7,442", additionalText: "（送料込み）" },
