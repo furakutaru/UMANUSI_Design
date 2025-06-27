@@ -6,7 +6,7 @@ interface MessageBodyProps {
 
 export const MessageBody = ({ children }: MessageBodyProps) => {
   return (
-    <div className="text-base text-gray-700 leading-relaxed mb-4">
+    <div className="text-base text-gray-700 leading-6 md:leading-relaxed mb-4">
       {children}
     </div>
   );

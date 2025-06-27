@@ -12,11 +12,11 @@ const ValueCard = ({ title, items, className = "" }: ValueCardProps) => {
       <h3 className="text-xl md:text-2xl font-bold text-center mb-4 md:mb-6 text-gray-900">
         {title}
       </h3>
-      <ul className="text-gray-800 text-base font-medium space-y-2 md:space-y-3 text-left w-full modern-indent ml-[-18px]">
+      <ul className="text-gray-800 text-base font-medium space-y-2 md:space-y-3 text-left w-full modern-indent">
         {items.map((item, index) => (
           <li key={index} className="flex items-start">
-            <span className="text-red-500 text-[2.25rem] leading-none" style={{ marginRight: '-0.2rem', marginTop: '-0.1rem' }}>・</span>
-            <span className="leading-relaxed">{item}</span>
+            <span className="text-red-500 text-[2.25rem] flex-shrink-0">・</span>
+            <span className="leading-6 md:leading-relaxed">{item}</span>
           </li>
         ))}
       </ul>

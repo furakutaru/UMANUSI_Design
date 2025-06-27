@@ -94,7 +94,7 @@ export const ServiceSection = () => {
         <h1 className="text-3xl md:text-4xl font-bold leading-none text-black mb-0">
           サービス内容
         </h1>
-        <h2 className="text-xl md:text-2xl font-semibold leading-none text-gray-900 mt-4 mb-6">
+        <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mt-4 mb-6">
           競馬に関わる様々なデザインニーズにお応えします
         </h2>
       </header>

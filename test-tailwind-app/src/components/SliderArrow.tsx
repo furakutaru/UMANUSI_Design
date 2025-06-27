@@ -13,7 +13,7 @@ export const SliderArrow = ({ direction, onClick, variant, className = '' }: Sli
     <button
       type="button"
       onClick={onClick}
-      className={`slider-arrow ${variant ? `slider-arrow-${variant}` : ''} ${className} bg-red-600 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-opacity-100 shadow-lg`}
+      className={`slider-arrow ${variant ? `slider-arrow-${variant}` : ''} ${className} bg-red-600/60 rounded-full flex items-center justify-center transition-all duration-200 hover:opacity-100 shadow-lg`}
       aria-label={direction === 'left' ? '前へ' : '次へ'}
       style={{ width: 48, height: 48 }}
     >

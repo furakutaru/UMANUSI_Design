@@ -60,11 +60,11 @@ export const ProfileContent = ({ headingRef, headingClassName, contentRef, conte
             }}
           >
             <div className="p-6 text-base text-white whitespace-pre-line break-words">
-              2023年地方馬主資格取得、デザイナー
+              2023年地方馬主資格取得、デザイナー。
               <br />
               ダビスタで競馬に触れナリタブライアンや黄金世代に青春を費やしブランクがあったのちウマ娘で復帰。
               <br />
-              馬券はからっきしなので主にG1馬応援。現在は共有馬のみ。
+              馬券はからっきしなので応援馬券くらい。現在は共有馬のみ。
               <br />
               夢は一頭持ち、重賞出走、ドバイワールドカップ。
             </div>

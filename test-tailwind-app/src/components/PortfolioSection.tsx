@@ -137,12 +137,12 @@ export const PortfolioSection = () => {
             {/* 左右ボタン */}
             {currentIndex > 0 && (
               <div className="hidden md:block absolute left-[-56px] top-1/2 -translate-y-1/2 z-20">
-                <SliderArrow direction="left" onClick={handlePrevious} variant={undefined} />
+                <SliderArrow direction="left" onClick={handlePrevious} variant={undefined} className={!showAttention ? 'bg-[rgba(220,38,38,0.3)]' : ''} />
               </div>
             )}
             {currentIndex < total - 1 && (
               <div className="hidden md:block absolute right-[-56px] top-1/2 -translate-y-1/2 z-20">
-                <SliderArrow direction="right" onClick={handleNext} className={showAttention ? 'animate-attention' : ''} variant={undefined} />
+                <SliderArrow direction="right" onClick={handleNext} className={`${showAttention ? 'animate-attention' : 'bg-[rgba(220,38,38,0.3)]'}`} variant={undefined} />
               </div>
             )}
             <div
@@ -158,12 +158,12 @@ export const PortfolioSection = () => {
             </div>
             {/* モバイル用左右ボタン */}
             {currentIndex > 0 && (
-              <div className="md:hidden absolute left-2 top-1/2 -translate-y-1/2 z-20">
+              <div className="md:hidden absolute left-[-12px] top-1/2 -translate-y-1/2 z-20">
                 <SliderArrow direction="left" onClick={handlePrevious} variant="scene" />
               </div>
             )}
             {currentIndex < total - 1 && (
-              <div className="md:hidden absolute right-2 top-1/2 -translate-y-1/2 z-20">
+              <div className="md:hidden absolute right-[-12px] top-1/2 -translate-y-1/2 z-20">
                 <SliderArrow direction="right" onClick={handleNext} variant="scene" className={showAttention ? 'animate-attention' : ''} />
               </div>
             )}
@@ -176,6 +176,15 @@ export const PortfolioSection = () => {
                 className={`inline-block w-2 h-2 md:w-3 md:h-3 rounded-full ${currentIndex === idx ? 'bg-white' : 'bg-gray-500/50'} transition-colors`}
               />
             ))}
+          </div>
+          {/* SP時のみ画像の外にテキストを表示 */}
+          <div className="block md:hidden w-full max-w-[340px] mx-auto mt-2 px-2">
+            <h3 className="text-lg font-bold leading-7 text-white mb-1">
+              {portfolioItems[currentIndex].title}
+            </h3>
+            <p className="text-sm leading-6 text-white">
+              {portfolioItems[currentIndex].description}
+            </p>
           </div>
         </div>
       </div>

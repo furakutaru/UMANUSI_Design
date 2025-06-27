@@ -43,13 +43,15 @@ export const PrintPrice = () => {
             <div key={rowIdx} className="flex flex-col md:flex-row gap-6">
               {row.map((item: PrintPriceItem, idx: number) => (
                 <article key={idx} className="flex-1 bg-white p-0 flex flex-col justify-between min-w-0">
-                  <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-start md:items-center py-0 px-0">
+                  <div className="flex flex-row gap-2 md:gap-5 items-start md:items-center py-0 px-0">
                     <h3 className="text-base font-semibold text-gray-900 flex-1 min-w-0">{item.productName}</h3>
-                    <div className="font-bold text-xl text-red-600 text-right flex items-end gap-1 self-end">
-                      <span className="text-sm align-sub">¥</span>
-                      <span>{item.amount}</span>
+                    <div className="font-bold text-xl text-red-600 text-right flex flex-row items-end gap-1 self-end">
+                      <div className="flex items-end gap-1">
+                        <span className="text-sm" style={{ lineHeight: '1.4rem' }}>¥</span>
+                        <span>{item.amount}</span>
+                      </div>
                       {item.additionalText && (
-                        <span className="text-xs text-gray-500">{item.additionalText}</span>
+                        <span className="text-xs text-gray-500 mb-1">{item.additionalText}</span>
                       )}
                     </div>
                   </div>

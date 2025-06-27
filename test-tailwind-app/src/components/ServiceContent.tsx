@@ -62,10 +62,10 @@ export const ServiceContent = ({
               />
               <h3 className="basis-auto">{title}</h3>
             </header>
-            <p className="mt-5 md:mt-7 text-base md:text-lg leading-7 text-gray-700 w-full">
+            <p className="mt-3 md:mt-7 text-sm md:text-lg leading-5 md:leading-7 text-gray-700 w-full">
               {description}
             </p>
-            <div className="mt-7 md:mt-9 w-full max-w-full">
+            <div className="mt-3 md:mt-9 w-full max-w-full">
               {/* SP用：2個2個2個表示 */}
               <div className="block md:hidden space-y-2">
                 {featureRows.map((row, rowIndex) => (

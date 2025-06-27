@@ -7,7 +7,7 @@ interface ProcessCardProps {
 
 export const ProcessCard = ({ title, description }: ProcessCardProps) => {
   return (
-    <article className="flex flex-col grow shrink-0 items-center px-6 pt-6 mt-0 text-black bg-white rounded-lg basis-0 min-h-[207px] shadow-[3px_3px_4px_rgba(0,0,0,0.25)] w-fit">
+    <article className="flex flex-col grow shrink-0 items-center px-6 pt-6 pb-6 mt-0 text-black bg-white rounded-lg basis-0 md:min-h-[207px] shadow-[3px_3px_4px_rgba(0,0,0,0.25)] w-fit">
       <h3 className="text-2xl font-semibold leading-none">
         {title}
       </h3>
