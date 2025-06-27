@@ -7,7 +7,7 @@ const valuesData = [
   {
     title: "アイデアの具現化と提案",
     items: [
-      "「作りたいけど、何がいいか分からない」を解決",
+      "『作りたいけど、何がいいか分からない』というお悩みも解決",
       "漠然としたイメージを、具体的なデザインに描き起こし",
     ],
   },
@@ -56,7 +56,7 @@ export const ValuePropositionSection = () => {
         </div>
         {/* CSS Gridを使用して高さを強制的に揃える */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full max-w-5xl">
-          {valuesData.map((value: any, index: number) => (
+          {valuesData.map((value: { title: string; items: string[] }, index: number) => (
             <div
               ref={cardRefs[index].ref}
               key={index}

@@ -1,14 +1,36 @@
 import React from 'react';
+import Image from 'next/image';
 import { FeatureItem } from './FeatureItem';
+
+interface Feature {
+  iconSrc: string;
+  text: string;
+}
+
+interface ServiceContentProps {
+  title: string;
+  description: string;
+  features: Feature[];
+  imageSrc: string;
+  tabId: string;
+}
+
+const iconMap: { [key: string]: string } = {
+  goods: "/CupIcon.svg",
+  logo: "/PaletteIcon.svg",
+  print: "/PageIcon.svg",
+  web: "/WebIcon.svg",
+};
 
 export const ServiceContent = ({
   title,
   description,
   features,
   imageSrc,
-}) => {
+  tabId,
+}: ServiceContentProps) => {
   // SP用：2個2個2個に分割
-  const chunkArray = (arr, size) => {
+  const chunkArray = (arr: Feature[], size: number): Feature[][] => {
     const result = [];
     for (let i = 0; i < arr.length; i += size) {
       result.push(arr.slice(i, i + size));
@@ -30,10 +52,12 @@ export const ServiceContent = ({
         {/* テキスト＋特徴リスト */}
         <div className="w-full md:w-6/12">
           <div className="flex flex-col items-start w-full md:my-auto">
-            <header className="flex gap-2 text-xl md:text-2xl font-bold leading-none text-black">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/d22efd85dd1e4c99a198cddf2a2a638b/38d27a475b19909bcae500f4dff5fb1e1cf8adf4?placeholderIfAbsent=true"
-                className="object-contain shrink-0 self-start w-6 aspect-square"
+            <header className="flex gap-2 items-center text-xl md:text-2xl font-bold leading-none text-black">
+              <Image
+                src={iconMap[tabId] || "/CupIcon.svg"}
+                width={24}
+                height={24}
+                className="object-contain shrink-0 self-center w-6 aspect-square"
                 alt=""
               />
               <h3 className="basis-auto">{title}</h3>
@@ -83,8 +107,10 @@ export const ServiceContent = ({
         </div>
         {/* 画像 */}
         <div className="w-full md:ml-5 md:w-6/12 flex items-center justify-center">
-          <img
+          <Image
             src={imageSrc}
+            width={400}
+            height={300}
             className="object-contain w-full rounded-lg aspect-[1.33] md:mt-0 max-w-full"
             alt={`${title}のサービス内容`}
           />

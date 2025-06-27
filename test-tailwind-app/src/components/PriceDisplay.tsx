@@ -1,13 +1,16 @@
-import React from "react";
+import React from 'react';
 
-export const PriceDisplay = ({ amount, additionalText }) => {
+interface PriceDisplayProps {
+  amount: string;
+  additionalText?: string;
+}
+
+export const PriceDisplay = ({ amount, additionalText }: PriceDisplayProps) => {
   return (
-    <div className="font-semibold text-center">
-      <span style={{ fontWeight: 700, fontSize: '14px' }}>¥</span>
-      <span style={{ fontWeight: 700 }}>{amount}</span>
-      <span style={{ fontWeight: 700, fontSize: '14px' }}>
-        {additionalText}
-      </span>
-    </div>
+    <span>
+      <span className="text-sm">¥</span>
+      <span className="text-lg font-bold text-red-600">{amount}</span>
+      {additionalText && <span className="text-xs text-gray-500">{additionalText}</span>}
+    </span>
   );
 }; 

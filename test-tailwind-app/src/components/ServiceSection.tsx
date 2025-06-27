@@ -70,7 +70,6 @@ const tabsData = [
 export const ServiceSection = () => {
   const [activeTab, setActiveTab] = useState('goods');
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const currentTabData = tabsData.find(tab => tab.id === activeTab) || tabsData[0];
   
   const headerRef = useFadeInOnScroll();
   const contentRef = useFadeInOnScroll();
@@ -122,10 +121,11 @@ export const ServiceSection = () => {
             className={`relative transition-opacity duration-300 ${isTransitioning ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
           >
             <ServiceContent
-              title={tabsData.find(tab => tab.id === displayedTab)?.title}
-              description={tabsData.find(tab => tab.id === displayedTab)?.description}
-              features={tabsData.find(tab => tab.id === displayedTab)?.features}
-              imageSrc={tabsData.find(tab => tab.id === displayedTab)?.imageSrc}
+              title={tabsData.find(tab => tab.id === displayedTab)?.title ?? ''}
+              description={tabsData.find(tab => tab.id === displayedTab)?.description ?? ''}
+              features={tabsData.find(tab => tab.id === displayedTab)?.features ?? []}
+              imageSrc={tabsData.find(tab => tab.id === displayedTab)?.imageSrc ?? ''}
+              tabId={displayedTab}
             />
           </div>
         </div>

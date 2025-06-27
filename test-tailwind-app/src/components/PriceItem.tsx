@@ -1,12 +1,19 @@
 import React from "react";
 import { PriceDisplay } from "./PriceDisplay";
 
+interface PriceItemProps {
+  productName: string;
+  amount: string;
+  additionalText?: string;
+  className?: string;
+}
+
 export const PriceItem = ({
   productName,
   amount,
   additionalText,
   className = ""
-}) => {
+}: PriceItemProps) => {
   return (
     <article className={`overflow-hidden flex-1 grow shrink-0 pt-6 bg-white basis-0 w-fit max-md:max-w-full ${className}`}>
       <div className="flex flex-wrap gap-5 justify-between max-md:max-w-full">

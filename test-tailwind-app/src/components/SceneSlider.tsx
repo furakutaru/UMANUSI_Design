@@ -116,13 +116,17 @@ export function SceneSlider({ scenes }: SceneSliderProps) {
             </div>
           ))}
         </div>
+        {currentIndex > 0 && (
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+            <SliderArrow direction="left" onClick={handlePrev} variant="scene" className="text-red-600" />
+          </div>
+        )}
+        {currentIndex < maxIndex && (
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+            <SliderArrow direction="right" onClick={handleNext} variant="scene" className={`text-red-600 ${showAttention ? 'animate-attention' : ''}`} />
+          </div>
+        )}
       </div>
-      {currentIndex > 0 && (
-        <SliderArrow direction="left" onClick={handlePrev} variant="scene" />
-      )}
-      {currentIndex < maxIndex && (
-        <SliderArrow direction="right" onClick={handleNext} variant="scene" className={showAttention ? 'animate-attention' : ''} />
-      )}
     </div>
   );
 } 

@@ -1,26 +1,22 @@
 import React from "react";
+import Image from "next/image";
 
 interface PortfolioCardProps {
   image: string;
   title: string;
   description: string;
-  altText?: string;
+  altText: string;
 }
 
-export const PortfolioCard = ({
-  image,
-  title,
-  description,
-  altText = ""
-}: PortfolioCardProps) => {
+export const PortfolioCard = ({ image, title, description, altText }: PortfolioCardProps) => {
   return (
-    <div
-      className="relative shrink-0 mx-auto flex flex-col justify-end items-center rounded-lg w-full aspect-[7/4] md:max-w-[700px] md:aspect-[7/4]"
-    >
-      <img
+    <div className="relative shrink-0 mx-auto flex flex-col justify-end items-center rounded-lg w-full aspect-[7/4] md:max-w-[700px] md:aspect-[7/4]">
+      <Image
         src={image.replace(/\.(png|jpg)$/, '.webp')}
         alt={altText}
+        fill
         className="object-cover absolute top-0 left-0 rounded-lg w-full h-full"
+        sizes="(max-width: 700px) 100vw, 700px"
         loading="lazy"
       />
       <div

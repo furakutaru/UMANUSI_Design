@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { PortfolioCard } from "./PortfolioCard";
 import { SliderArrow } from "./SliderArrow";
 import { useFadeInOnScroll } from "../hooks/useFadeInOnScroll";
@@ -72,12 +72,12 @@ export const PortfolioSection = () => {
   // スワイプ機能
   const minSwipeDistance = 50;
 
-  const onTouchStart = (e: any) => {
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const onTouchMove = (e: any) => {
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchEnd(e.targetTouches[0].clientX);
   };
 

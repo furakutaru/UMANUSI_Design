@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-export const MessageBody = ({ children }) => {
+interface MessageBodyProps {
+  children: ReactNode;
+}
+
+export const MessageBody = ({ children }: MessageBodyProps) => {
   return (
-    <p className="mt-6 text-base leading-relaxed text-gray-700 whitespace-pre-wrap break-words">
+    <div className="text-base text-gray-700 leading-relaxed mb-4">
       {children}
-    </p>
+    </div>
   );
 }; 

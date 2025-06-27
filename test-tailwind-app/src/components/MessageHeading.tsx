@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-export const MessageHeading = ({ children }) => {
+interface MessageHeadingProps {
+  children: ReactNode;
+}
+
+export const MessageHeading = ({ children }: MessageHeadingProps) => {
   return (
-    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 break-words">
+    <h2 className="text-2xl font-bold text-gray-900 mb-2">
       {children}
-    </h1>
+    </h2>
   );
 }; 

@@ -79,9 +79,9 @@ export function PriceSection() {
         </header>
         
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch justify-items-center price-list">
-          {priceCards.map((card: any, index: number) => (
-            <li 
-              key={card.title} 
+          {priceCards.map((card: { title: string; items: { serviceName: React.ReactNode; price: string }[] }, index: number) => (
+            <div
+              key={card.title}
               className={`fade-in${cardRefs[index].isVisible ? ' is-visible' : ''} flex flex-col w-full max-w-sm`}
               ref={cardRefs[index].ref}
               style={{ transitionDelay: `${index * 0.18}s` }}
@@ -89,7 +89,7 @@ export function PriceSection() {
               <FeatureCard 
                 title={card.title}
                 items={card.items}
-                renderItem={(item: any, index: number, total: number) => (
+                renderItem={(item: { serviceName: React.ReactNode; price: string }, index: number, total: number) => (
                   <li
                     key={index}
                     className={`flex justify-between items-center w-full py-3 ${
@@ -104,7 +104,7 @@ export function PriceSection() {
                   </li>
                 )}
               />
-            </li>
+            </div>
           ))}
         </ul>
 

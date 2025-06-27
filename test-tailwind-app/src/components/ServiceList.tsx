@@ -43,7 +43,7 @@ export function ServiceList() {
               <FeatureCard 
                 title={category.title}
                 items={category.services}
-                renderItem={(item: any, index: number, total: number) => (
+                renderItem={(item: string, index: number, total: number) => (
                   <li
                     key={index}
                     className={`flex justify-start items-center w-full py-2 ${

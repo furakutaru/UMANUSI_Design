@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { ReactNode, MouseEventHandler } from 'react';
 
-export const TabButton = ({ children, isActive, onClick }) => {
+interface TabButtonProps {
+  children: ReactNode;
+  isActive: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+export const TabButton = ({ children, isActive, onClick }: TabButtonProps) => {
   return (
     <button
-      className={`w-full max-w-xs text-xs gap-2.5 self-stretch px-8 py-4 my-auto rounded-full min-h-[48px] max-md:px-5 transition-all duration-200 ease-out hover:scale-105 hover:bg-red-500 hover:text-white font-semibold ${
-        isActive
-          ? 'text-white bg-red-500'
-          : 'text-red-500 bg-white border border-red-500 border-solid'
-      }`}
+      className={`px-6 py-2 rounded-full font-bold text-base sm:text-base text-xs focus:outline-none transition-all duration-200 ease-out hover:scale-105
+        ${isActive ? 'bg-red-600 text-white' : 'bg-gray-100 text-red-600 hover:bg-red-50'}
+      `}
       onClick={onClick}
+      type="button"
     >
       {children}
     </button>

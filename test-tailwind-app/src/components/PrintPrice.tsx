@@ -12,7 +12,8 @@ const printPriceData = [
 ];
 
 // 2件ずつの配列に分割
-const chunkArray = (arr: any[], size: number) => {
+type PrintPriceItem = { productName: string; amount: string; additionalText: string };
+const chunkArray = (arr: PrintPriceItem[], size: number): PrintPriceItem[][] => {
   const result = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
@@ -38,9 +39,9 @@ export const PrintPrice = () => {
         
         {/* コンテンツ：次にフェードイン */}
         <div ref={contentRef.ref} style={{ transitionDelay: '0.3s' }} className={`fade-in${contentRef.isVisible ? ' is-visible' : ''} space-y-6`}>
-          {rows.map((row: any[], rowIdx: number) => (
+          {rows.map((row: PrintPriceItem[], rowIdx: number) => (
             <div key={rowIdx} className="flex flex-col md:flex-row gap-6">
-              {row.map((item: any, idx: number) => (
+              {row.map((item: PrintPriceItem, idx: number) => (
                 <article key={idx} className="flex-1 bg-white p-0 flex flex-col justify-between min-w-0">
                   <div className="flex flex-col md:flex-row gap-2 md:gap-5 items-start md:items-center py-0 px-0">
                     <h3 className="text-base font-semibold text-gray-900 flex-1 min-w-0">{item.productName}</h3>

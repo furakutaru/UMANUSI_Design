@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-export const MessageSubtitle = ({ children }) => {
+interface MessageSubtitleProps {
+  children: ReactNode;
+}
+
+export const MessageSubtitle = ({ children }: MessageSubtitleProps) => {
   return (
-    <h2 className="mt-4 text-xl md:text-2xl font-semibold text-gray-800 break-words">
+    <h3 className="text-lg text-gray-600 mb-2">
       {children}
-    </h2>
+    </h3>
   );
 }; 
