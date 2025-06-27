@@ -67,7 +67,7 @@ export const FAQ = () => {
   return (
     <section className="w-full bg-white py-12 md:py-16">
       <div className="max-w-[800px] mx-auto px-4">
-        <header ref={headerRef.ref} className="text-center mb-8 md:mb-12">
+        <header ref={headerRef.ref} className={`fade-in${headerRef.isVisible ? ' is-visible' : ''} text-center mb-8 md:mb-12`}>
           <h1 className="text-3xl md:text-4xl font-bold text-black">よくある質問</h1>
           <h2 className="mt-4 text-lg md:text-xl font-semibold text-gray-800">
             安心してご依頼いただけるよう、明確なプロセスでお進めします
@@ -79,6 +79,7 @@ export const FAQ = () => {
               key={index}
               ref={itemRefs[index].ref}
               style={{ transitionDelay: `${index * 0.2}s` }}
+              className={`fade-in${itemRefs[index].isVisible ? ' is-visible' : ''}`}
             >
               <FAQItem
                 question={faq.question}

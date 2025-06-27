@@ -7,16 +7,18 @@ import { AccordionHeader } from './AccordionHeader';
 
 interface ProfileContentProps {
   headingRef: React.RefObject<HTMLDivElement>;
+  headingClassName: string;
   contentRef: React.RefObject<HTMLDivElement>;
+  contentClassName: string;
 }
 
-export const ProfileContent = ({ headingRef, contentRef }: ProfileContentProps) => {
+export const ProfileContent = ({ headingRef, headingClassName, contentRef, contentClassName }: ProfileContentProps) => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const accordionContentRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="flex flex-col w-full">
-      <div ref={headingRef}>
+      <div ref={headingRef} className={headingClassName}>
         <MessageHeading>
           私も、あなたと同じ一人の馬主です。
         </MessageHeading>
@@ -26,7 +28,7 @@ export const ProfileContent = ({ headingRef, contentRef }: ProfileContentProps) 
         </MessageSubtitle>
       </div>
 
-      <div ref={contentRef} style={{ transitionDelay: '0.3s' }}>
+      <div ref={contentRef} className={contentClassName} style={{ transitionDelay: '0.3s' }}>
         <MessageBody>
           はじめましてデザイナー馬主のUMAです。
           <br />

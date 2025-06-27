@@ -120,13 +120,13 @@ export const PortfolioSection = () => {
     <section id="portfolio" className="w-full bg-neutral-900 pt-8 pb-12">
       <div className="max-w-[1200px] w-full mx-auto flex flex-col items-center justify-center px-4">
         {/* ヘッダー：最初にフェードイン */}
-        <header ref={headerRef.ref} className="text-center">
+        <header ref={headerRef.ref} className={`fade-in${headerRef.isVisible ? ' is-visible' : ''} text-center`}>
           <h1 className="text-3xl md:text-4xl font-bold leading-tight text-white mb-0">制作実績</h1>
           <h2 className="text-lg md:text-xl font-semibold leading-snug text-white mt-4 mb-6">これまでのデザイン実績の一部をご紹介します</h2>
         </header>
         
         {/* スライダー：次にフェードイン */}
-        <div ref={sliderContentRef.ref} style={{ transitionDelay: '0.3s' }} className="flex flex-col items-center justify-center w-full relative">
+        <div ref={sliderContentRef.ref} style={{ transitionDelay: '0.3s' }} className={`fade-in${sliderContentRef.isVisible ? ' is-visible' : ''} flex flex-col items-center justify-center w-full relative`}>
           <div 
             ref={sliderRef}
             className="mx-auto w-full max-w-[340px] aspect-[7/4] md:max-w-[700px] relative"

@@ -30,6 +30,7 @@ const valuesData = [
 
 export const ValuePropositionSection = () => {
   const cardRefs = [useFadeInOnScroll(), useFadeInOnScroll(), useFadeInOnScroll()];
+  const headingFade = useFadeInOnScroll();
 
   return (
     <section 
@@ -45,7 +46,7 @@ export const ValuePropositionSection = () => {
       {/* コンテンツ */}
       <div className="relative z-20 w-full h-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
         {/* 見出し群 */}
-        <div ref={useFadeInOnScroll().ref}>
+        <div ref={headingFade.ref} className={`fade-in${headingFade.isVisible ? ' is-visible' : ''}`}>
           <h1 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg">
             UMANUSI Designが提供する3つの価値
           </h1>
@@ -60,7 +61,7 @@ export const ValuePropositionSection = () => {
               ref={cardRefs[index].ref}
               key={index}
               style={{ transitionDelay: `${index * 0.18}s` }}
-              className="h-full"
+              className={`fade-in${cardRefs[index].isVisible ? ' is-visible' : ''} h-full`}
             >
               <ValueCard title={value.title} items={value.items} />
             </div>

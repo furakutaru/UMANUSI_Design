@@ -29,7 +29,7 @@ export const PrintPrice = () => {
     <section className="w-full bg-white py-6 md:py-16">
       <div className="max-w-[1200px] mx-auto px-4">
         {/* ヘッダー：最初にフェードイン */}
-        <header ref={headerRef.ref} className="text-center mb-8 md:mb-12">
+        <header ref={headerRef.ref} className={`fade-in${headerRef.isVisible ? ' is-visible' : ''} text-center mb-8 md:mb-12`}>
           <h1 className="text-3xl md:text-4xl font-bold text-black">印刷代参考料金</h1>
           <h2 className="mt-4 text-lg md:text-xl font-semibold text-gray-800">
             印刷物の種類や部数によって価格が変動します。下記は一例です
@@ -37,7 +37,7 @@ export const PrintPrice = () => {
         </header>
         
         {/* コンテンツ：次にフェードイン */}
-        <div ref={contentRef.ref} style={{ transitionDelay: '0.3s' }} className="space-y-6">
+        <div ref={contentRef.ref} style={{ transitionDelay: '0.3s' }} className={`fade-in${contentRef.isVisible ? ' is-visible' : ''} space-y-6`}>
           {rows.map((row: any[], rowIdx: number) => (
             <div key={rowIdx} className="flex flex-col md:flex-row gap-6">
               {row.map((item: any, idx: number) => (

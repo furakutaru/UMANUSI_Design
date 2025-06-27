@@ -61,7 +61,7 @@ export default function UseCaseSection() {
   return (
     <section className="relative w-full py-8 md:py-16 overflow-x-clip">
       <div className="relative z-20 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        <header ref={headerRef.ref} className="text-center">
+        <header ref={headerRef.ref} className={`fade-in${headerRef.isVisible ? ' is-visible' : ''} text-center`}>
           <h1 className="text-3xl md:text-4xl font-bold leading-none text-black">
             活用シーン例
           </h1>
@@ -69,7 +69,7 @@ export default function UseCaseSection() {
             様々なシーンでご活用いただけます
           </h2>
         </header>
-        <div ref={sliderRef.ref} style={{ transitionDelay: '0.3s' }}>
+        <div ref={sliderRef.ref} style={{ transitionDelay: '0.3s' }} className={`fade-in${sliderRef.isVisible ? ' is-visible' : ''}`}>
           <SceneSlider scenes={sceneData} />
         </div>
       </div>

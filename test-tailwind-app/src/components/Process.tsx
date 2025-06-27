@@ -55,7 +55,7 @@ export default function Process() {
       {/* コンテンツラッパー */}
       <div className="relative z-20 flex flex-col items-center w-full max-w-[1200px] mx-auto px-4">
         {/* ヘッダー：最初にフェードイン */}
-        <header ref={headerRef.ref} className="text-center mb-8 md:mb-12">
+        <header ref={headerRef.ref} className={`fade-in${headerRef.isVisible ? ' is-visible' : ''} text-center mb-8 md:mb-12`}>
           <h1 className="text-3xl md:text-4xl font-bold text-white">制作プロセス</h1>
           <h2 className="mt-4 text-lg md:text-xl font-semibold text-white">
             安心してご依頼いただけるよう、明確なプロセスでお進めします
@@ -67,12 +67,12 @@ export default function Process() {
           {processSteps.map((step, index) => (
             <div
               key={index}
-              className="relative flex flex-col items-center w-full max-w-xs mx-auto"
+              className={`fade-in${cardRefs[index].isVisible ? ' is-visible' : ''} h-full relative`}
               ref={cardRefs[index].ref}
-              style={{ transitionDelay: `${index * 0.18}s` }}
+              style={{ transitionDelay: `${index < 3 ? index * 0.18 : 0.36 + (index - 3) * 0.09}s` }}
             >
               {/* ナンバーをカード左上角より上に重ねる */}
-              <div className="absolute left-3 top-0 -translate-x-1/2 -translate-y-1/4 z-20">
+              <div className="absolute left-3 top-0 -translate-x-1/2 -translate-y-1/4 z-30 pointer-events-none">
                 <ProcessNumberBadge number={step.number} />
               </div>
               <ProcessCard

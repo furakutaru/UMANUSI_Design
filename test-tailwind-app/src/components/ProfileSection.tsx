@@ -23,7 +23,7 @@ export const ProfileSection = ({
           
           {/* 右側：テキストコンテンツ */}
           <div className="w-full md:w-2/3">
-            <ProfileContent headingRef={headingRef.ref} contentRef={contentRef.ref} />
+            <ProfileContent headingRef={headingRef.ref} headingClassName={`fade-in${headingRef.isVisible ? ' is-visible' : ''}`} contentRef={contentRef.ref} contentClassName={`fade-in${contentRef.isVisible ? ' is-visible' : ''}`} />
           </div>
         </div>
       </div>

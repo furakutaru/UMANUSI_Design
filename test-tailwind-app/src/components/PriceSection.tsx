@@ -71,7 +71,7 @@ export function PriceSection() {
   return (
     <section id="price" className="w-full bg-white py-6 md:py-16">
       <div className="max-w-[1200px] mx-auto px-4">
-        <header ref={headerRef.ref} className="text-center mb-8 md:mb-12">
+        <header ref={headerRef.ref} className={`fade-in${headerRef.isVisible ? ' is-visible' : ''} text-center mb-8 md:mb-12`}>
           <h1 className="text-3xl md:text-4xl font-bold text-black">料金</h1>
           <h2 className="mt-4 text-lg md:text-xl font-semibold text-gray-800">
             デザインの複雑さや数量によって価格が変動します
@@ -82,7 +82,7 @@ export function PriceSection() {
           {priceCards.map((card: any, index: number) => (
             <li 
               key={card.title} 
-              className="flex flex-col w-full max-w-sm"
+              className={`fade-in${cardRefs[index].isVisible ? ' is-visible' : ''} flex flex-col w-full max-w-sm`}
               ref={cardRefs[index].ref}
               style={{ transitionDelay: `${index * 0.18}s` }}
             >
